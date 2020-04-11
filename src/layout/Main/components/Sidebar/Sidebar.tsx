@@ -1,12 +1,13 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, styled } from '@material-ui/styles';
 import {
   Divider,
   Drawer,
   useTheme,
   Theme,
   DrawerProps,
+  colors,
 } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import List from '@material-ui/core/List';
@@ -29,6 +30,8 @@ import { SidebarNav } from './components';
 import { RiskIcon } from 'icons/RiskIcon';
 import { HomeIcon } from 'icons/HomeIcon';
 import { HamburgerMenuIcon } from 'icons/HamburgerMenuIcon';
+import theme from 'theme';
+import SidebarTopMenu from './components/SidebarTopMenu';
 
 interface Props {
   variant?: 'permanent' | 'persistent' | 'temporary';
@@ -77,49 +80,25 @@ export const Sidebar: React.FC<Props> = (props: Props) => {
   ];
 
   return (
-    <Drawer
-      anchor='left'
-      classes={{ paper: classes.drawer }}
-      onClose={onClose}
-      open={open}
-      variant={variant}
-    >
-      <div {...rest} className={clsx(classes.root, className)}>
+    <SideNav>
+      <div>
+        <SidebarTopMenu />
         <SidebarNav className={classes.nav} pages={pages} />
-        <div>Settings</div>
       </div>
-    </Drawer>
+
+      {/* <div>Settings</div> */}
+    </SideNav>
   );
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
-  drawer: {
-    width: 50,
-  },
-  root: {
-    backgroundColor: theme.palette.primary.light,
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    justifyContent: 'space-between',
-  },
-  divider: {
-    margin: theme.spacing(2, 0),
-  },
-  nav: {
-    marginBottom: theme.spacing(2),
-  },
-  iconButton: {
-    borderLeftWidth: '4px',
-    borderLeftStyle: 'solid',
-    marginBottom: '4px',
-    borderLeftColor: 'transparent',
-    '&:hover': {
-      borderLeftWidth: '4px',
-      borderLeftStyle: 'solid',
-      marginBottom: '4px',
-      borderLeftColor: theme.palette.secondary.main,
-      icon: 'blue',
-    },
-  },
-}));
+const useStyles = makeStyles((theme: Theme) => ({}));
+
+const SideNav = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  minWidth: 40,
+  listStyle: 'none',
+  background: colors.grey[300],
+  minHeight: '100vh',
+  justifyContent: 'space-between',
+});

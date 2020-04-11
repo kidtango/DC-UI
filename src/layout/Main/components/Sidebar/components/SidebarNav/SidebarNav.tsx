@@ -26,7 +26,6 @@ export const SidebarNav: React.FC<Props> = (props: Props) => {
   const classes = useStyles();
   return (
     <List>
-      <div style={{ marginBottom: '50px' }}>Menu</div>
       {pages.map((page) => (
         <ListItem className={classes.item} disableGutters key={page.title}>
           <Button
@@ -47,8 +46,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   item: {
     display: 'flex',
-    paddingTop: 0,
-    paddingBottom: 0,
+    padding: '0 0',
+    zIndex: 0,
   },
   button: {
     justifyContent: 'center',

@@ -1,11 +1,11 @@
 import React from 'react';
 import { createBrowserHistory } from 'history';
 import { ThemeProvider } from '@material-ui/core';
-// import theme from './theme';
 import { Router } from 'react-router-dom';
 
 import theme from './theme';
 import { Routes } from './Routes';
+import './assets/scss/index.scss';
 
 const browserHistory = createBrowserHistory();
 

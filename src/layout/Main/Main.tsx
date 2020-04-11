@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import { useMediaQuery, Theme } from '@material-ui/core';
 
 import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
-import { Sidebar, Footer } from './components';
+import { Sidebar } from './components';
 
 interface Props {
   children: React.ReactNode;
@@ -35,34 +34,15 @@ export const Main: React.FC<Props> = (props: Props) => {
   console.log('isDesktop', isDesktop);
 
   return (
-    <div
-      className={clsx({
-        [classes.root]: true,
-        [classes.shiftContent]: isDesktop,
-      })}
-    >
-      {/* <Topbar onSidebarOpen={handleSidebarOpen} />
+    <div className={classes.root}>
       <Sidebar
-        onClose={handleSidebarClose}
-        open={shouldOpenSidebar}
         variant={isDesktop ? 'persistent' : 'temporary'}
+        open={shouldOpenSidebar}
       />
-      <main className={classes.content}>
-       
-        <Footer />
-      </main> */}
-      {/* <Topbar
-        variant={isDesktop ? 'persistent' : 'temporary'}
-        open={shouldOpenSidebar}
-      /> */}
 
-      <Sidebar
-        variant={isDesktop ? 'persistent' : 'temporary'}
-        open={shouldOpenSidebar}
-      />
       <main className={classes.content}>
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </div>
   );
@@ -70,16 +50,23 @@ export const Main: React.FC<Props> = (props: Props) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    paddingTop: 56,
-    height: '100%',
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: 64,
-    },
+    // [theme.breakpoints.up('sm')]: {
+    //   paddingTop: 64,
+    // },
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '2rem auto',
+    boxShadow: '0 2rem 6rem rgba(0, 0, 0, 0.3);',
+    maxHeight: '98%',
+    minHeight: '50rem',
+    maxWidth: '98%',
+    borderRadius: '0.5rem',
+    backgroundColor: theme.palette.primary.light,
+
+    overflow: 'hidden',
   },
-  shiftContent: {
-    paddingLeft: 240,
-  },
+
   content: {
-    height: '100%',
+    flex: 1,
   },
 }));
