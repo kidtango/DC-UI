@@ -4,7 +4,8 @@ const white = '#FFFFFF';
 const black = '#000000';
 const darkGrey = '#6B6D6F';
 const lightGrey = '#A5A5A5';
-const babyBlue = '#009DD9';
+const lightBlue = '#009DD9';
+const sidebarIconGrey = '8C8F93';
 
 export default {
   black,
@@ -12,14 +13,14 @@ export default {
   primary: {
     contrastText: white,
     dark: colors.grey[900],
-    main: colors.grey[500],
-    light: colors.grey[100],
+    main: '#8C8F93',
+    light: '#F5F5F5',
   },
   secondary: {
     contrastText: white,
     dark: colors.blue[900],
-    main: babyBlue,
-    light: colors.blue['A400'],
+    main: colors.blue[800],
+    light: lightBlue,
   },
   success: {
     contrastText: white,
@@ -59,5 +60,6 @@ export default {
     main: colors.blueGrey[500],
   },
   divider: colors.grey[200],
-  icon: babyBlue,
+  icon: lightBlue,
+  iconActive: '#009DD9',
 };

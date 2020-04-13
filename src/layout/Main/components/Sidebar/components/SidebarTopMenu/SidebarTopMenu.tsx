@@ -1,114 +1,111 @@
 import React from 'react';
+import { withStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
+import Menu, { MenuProps } from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
 import { HamburgerMenuIcon } from 'icons/HamburgerMenuIcon';
 import { IconButton } from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      marginTop: 10,
-      marginBottom: 40,
-      zIndex: 3000,
-    },
-    paper: {
-      marginRight: theme.spacing(2),
-    },
-    list: {
-      zIndex: 3000,
-    },
-  })
-);
+const StyledMenu = withStyles({
+  paper: {
+    border: 'none',
+    marginLeft: '0px',
+    padding: '0',
+    backgroundColor: '#DEDEDE',
+    borderRadius: '.5px',
+    boxShadow:
+      '0 0px 0px 0 rgba(0,0,0,0.14), 0 0px 0px 0px rgba(0,0,0,0.12), 0px 1px 2px 1px rgba(0,0,0,0.20)',
+  },
+})((props: MenuProps) => (
+  <Menu
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'left',
+    }}
+    {...props}
+  />
+));
 
-export const SidebarTopMenu: React.FC = () => {
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      // backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        // color: theme.palette.primary.contrastText,
+      },
+    },
+  },
+}))(MenuItem);
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    borderRadius: '0px',
+    width: '100%',
+    '&:hover': {
+      color: '#009DD9',
+    },
+  },
+}));
+
+export function SidebarTopMenu() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event: React.MouseEvent<EventTarget>) => {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target as HTMLElement)
-    ) {
-      return;
-    }
-
-    setOpen(false);
+  const handleClose = () => {
+    setAnchorEl(null);
   };
-
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current!.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
 
   return (
-    <div className={classes.root}>
-      <div>
-        <Button
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup='true'
-          onClick={handleToggle}
-        >
-          <HamburgerMenuIcon fontSize='large' />
-        </Button>
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          transition
-          disablePortal
-          className={classes.list}
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id='menu-list-grow'
-                    onKeyDown={handleListKeyDown}
-                  >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+    <div>
+      <Button
+        color='primary'
+        onClick={handleClick}
+        activeClassName={classes.root}
+        className={classes.root}
+      >
+        <HamburgerMenuIcon fontSize='large' />
+      </Button>
+      <StyledMenu
+        id='customized-menu'
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <StyledMenuItem>
+          <ListItemIcon>
+            <SendIcon fontSize='small' />
+          </ListItemIcon>
+          <ListItemText primary='Sent mail' />
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <DraftsIcon fontSize='small' />
+          </ListItemIcon>
+          <ListItemText primary='Drafts' />
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <InboxIcon fontSize='small' />
+          </ListItemIcon>
+          <ListItemText primary='Inbox' />
+        </StyledMenuItem>
+      </StyledMenu>
     </div>
   );
-};
+}
