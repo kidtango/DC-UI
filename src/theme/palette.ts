@@ -2,10 +2,7 @@ import { colors } from '@material-ui/core';
 
 const white = '#FFFFFF';
 const black = '#000000';
-const darkGrey = '#6B6D6F';
-const lightGrey = '#A5A5A5';
 const lightBlue = '#009DD9';
-const sidebarIconGrey = '8C8F93';
 
 export default {
   black,
@@ -25,7 +22,7 @@ export default {
   success: {
     contrastText: white,
     dark: colors.green[900],
-    main: colors.green[600],
+    main: '#769231',
     light: colors.green[400],
   },
   info: {
@@ -47,8 +44,9 @@ export default {
     light: colors.red[400],
   },
   text: {
-    primary: darkGrey,
-    secondary: lightGrey,
+    primary: '#212121',
+    secondary: '#666666',
+    light: '#B6B6B6',
     link: colors.blue[600],
   },
   background: {

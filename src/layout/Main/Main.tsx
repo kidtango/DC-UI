@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/styles';
-import { useMediaQuery, Theme } from '@material-ui/core';
+import { useMediaQuery, Theme, Container } from '@material-ui/core';
 
 import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
 import { Sidebar } from './components';
@@ -41,8 +41,10 @@ export const Main: React.FC<Props> = (props: Props) => {
       />
 
       <main className={classes.content}>
-        {children}
-        {/* <Footer /> */}
+        <Container maxWidth='xl' className={classes.container}>
+          {children}
+          {/* <Footer /> */}
+        </Container>
       </main>
     </div>
   );
@@ -67,6 +69,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   content: {
-    flex: 1,
+    flexGrow: 1,
+    backgroundColor: theme.palette.primary.light,
   },
+  container: { marginTop: theme.spacing(2) },
 }));

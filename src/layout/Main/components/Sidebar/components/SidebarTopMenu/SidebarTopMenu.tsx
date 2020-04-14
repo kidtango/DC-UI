@@ -50,6 +50,7 @@ const StyledMenuItem = withStyles((theme) => ({
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     borderRadius: '0px',
+    marginBottom: theme.spacing(4),
     width: '100%',
     '&:hover': {
       color: '#009DD9',
@@ -72,12 +73,7 @@ export function SidebarTopMenu() {
 
   return (
     <div>
-      <Button
-        color='primary'
-        onClick={handleClick}
-        activeClassName={classes.root}
-        className={classes.root}
-      >
+      <Button color='primary' onClick={handleClick} className={classes.root}>
         <HamburgerMenuIcon fontSize='large' />
       </Button>
       <StyledMenu

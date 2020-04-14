@@ -31,7 +31,8 @@ export const SidebarNav: React.FC<Props> = (props: Props) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    color: (props: any) => props.color,
+    // color: (props: any) => props.color,
+    padding: '0',
   },
   item: {
     display: 'flex',

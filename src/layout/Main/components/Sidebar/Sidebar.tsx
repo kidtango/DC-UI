@@ -83,9 +83,10 @@ const useStyles = makeStyles((theme: Theme) => ({}));
 const SideNav = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  minWidth: 40,
+  minWidth: '45px',
   listStyle: 'none',
   background: '#DEDEDE',
-  minHeight: '100vh',
+  minHeight: '90vh',
   justifyContent: 'space-between',
+  alignContent: 'left',
 });

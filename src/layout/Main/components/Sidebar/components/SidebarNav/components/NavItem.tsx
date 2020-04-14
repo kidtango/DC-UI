@@ -35,8 +35,8 @@ export const NavItem: React.FC<Props> = (props: Props) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
-    justifyContent: 'center',
     width: '100%',
+    padding: '0 0',
     borderRadius: '0px',
     '&:hover': {
       borderLeft: '5px solid',

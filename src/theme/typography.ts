@@ -4,17 +4,17 @@ import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 const typography: TypographyOptions = {
   h1: {
     color: palette.text.primary,
-    fontWeight: 500,
-    fontSize: '35px',
-    letterSpacing: '-0.24px',
-    lineHeight: '40px',
+    fontWeight: 600,
+    fontSize: '20px',
+    letterSpacing: '0.26px',
+    lineHeight: '26px',
   },
   h2: {
     color: palette.text.primary,
-    fontWeight: 500,
-    fontSize: '29px',
-    letterSpacing: '-0.24px',
-    lineHeight: '32px',
+    fontWeight: 600,
+    fontSize: '12px',
+    letterSpacing: '1.88px',
+    lineHeight: '16px',
   },
   h3: {
     color: palette.text.primary,
