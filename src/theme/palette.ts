@@ -46,7 +46,7 @@ export default {
   text: {
     primary: '#212121',
     secondary: '#666666',
-    light: '#B6B6B6',
+    disabled: '#B6B6B6',
     link: colors.blue[600],
   },
   background: {

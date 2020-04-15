@@ -3,21 +3,16 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
-import DrillingAndCompletion from 'view/DrillingAndCompletion';
-import { DrillAndCompletionIcon } from 'icons/DrillAndCompletionIcon';
 import { ChevronLogo } from 'icons/ChevronLogo';
 
-interface Props {
-  headerContent: {
-    title: string;
-    subTitle: string;
-    icon: React.ReactChild;
-  };
+export interface HeaderProps {
+  title: string;
+  subTitle: string;
+  icon: React.ReactChild;
 }
 
-export const Header: React.FC<Props> = (props: Props) => {
-  const { title, subTitle, icon } = props.headerContent;
-  console.log('icon', icon);
+export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
+  const { title, subTitle, icon } = props;
 
   const classes = useStyles();
 

@@ -41,7 +41,7 @@ export const Main: React.FC<Props> = (props: Props) => {
       />
 
       <main className={classes.content}>
-        <Container maxWidth='xl' className={classes.container}>
+        <Container className={classes.container}>
           {children}
           {/* <Footer /> */}
         </Container>
@@ -72,5 +72,5 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.primary.light,
   },
-  container: { marginTop: theme.spacing(2) },
+  container: { marginTop: theme.spacing(2), maxWidth: '99%' },
 }));
