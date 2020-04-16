@@ -35,7 +35,7 @@ export const NavItem: React.FC<Props> = (props: Props) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
-    width: '100%',
+    width: '70px',
     padding: '0 0',
     borderRadius: '0px',
     '&:hover': {
@@ -49,7 +49,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  icon: { color: (props: { color: string }) => props.color },
+  icon: {
+    color: (props: { color: string }) => props.color,
+  },
   active: {
     '& $icon': {
       color: (props: { color: string }) => props.color,

@@ -35,7 +35,12 @@ export const DecisionBox: React.FC<DecisionBoxProps> = (
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
-  root: { minHeight: 135, padding: '9px 22px', marginBottom: 15 },
+  root: {
+    maxHeight: 135,
+    minWidth: '100%',
+    padding: '9px 22px',
+    marginBottom: 15,
+  },
   content: {
     marginTop: '9px',
   },

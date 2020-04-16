@@ -4,7 +4,7 @@ import { useTheme, Theme } from '@material-ui/core';
 
 import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
 
-import { DrillAndCompletionIcon } from 'icons/DrillAndCompletionIcon';
+import { WellsSystemSuiteIcon } from 'icons/WellsSystemSuiteIcon';
 import { RigAllocationIcon } from 'icons/RigAllocationIcon';
 import { RTMIcon } from 'icons/RTMIcon';
 import { StandardsIcon } from 'icons/StandardsIcon';
@@ -36,33 +36,33 @@ export const Sidebar: React.FC<Props> = (props: Props) => {
     },
     {
       title: 'Drilling & Completion',
-      href: '/drillingAndCompletion',
-      icon: <DrillAndCompletionIcon fontSize='large' />,
-      color: '#009DD9',
+      href: '/WellsSystemSuiteIcon',
+      icon: <WellsSystemSuiteIcon fontSize='large' />,
+      color: theme.palette.icon.wells,
     },
     {
       title: 'Standards',
       href: '/standards',
       icon: <StandardsIcon fontSize='large' />,
-      color: '#003653',
+      color: theme.palette.icon.standards,
     },
     {
       title: 'Risk View',
       href: '/riskView',
       icon: <RiskIcon fontSize='large' />,
-      color: '#8A3093',
+      color: theme.palette.icon.risk,
     },
     {
       title: 'RTM for well execution',
       href: '/rtmWellExecution',
       icon: <RTMIcon fontSize='large' />,
-      color: '#769231',
+      color: theme.palette.icon.RTM,
     },
     {
       title: 'Rig Allocation',
       href: '/rigAllocation',
       icon: <RigAllocationIcon fontSize='large' />,
-      color: '#E5601F',
+      color: theme.palette.icon.rigAllocation,
     },
   ];
 
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme: Theme) => ({}));
 const SideNav = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  minWidth: '65px',
+  minWidth: '70px',
   listStyle: 'none',
   background: '#DEDEDE',
   minHeight: '95vh',

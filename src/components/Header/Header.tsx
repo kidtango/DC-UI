@@ -18,7 +18,13 @@ export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
 
   return (
     <div className={classes.root}>
-      <Grid container wrap='nowrap' spacing={1}>
+      <Grid
+        container
+        wrap='nowrap'
+        spacing={1}
+        direction='row'
+        alignItems='center'
+      >
         <Grid item>{icon}</Grid>
         <Grid item className={classes.appTitle}>
           <Typography variant='h2'>{subTitle}</Typography>
@@ -34,7 +40,6 @@ export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
-  icon: { height: '39px', width: '39px', color: '#009DD9' },
   appTitle: { marginRight: 'auto' },
-  chevronLogo: { height: '50px', width: '45px' },
+  chevronLogo: { height: '80px', width: '75px' },
 }));

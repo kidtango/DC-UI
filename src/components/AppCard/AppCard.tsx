@@ -1,15 +1,9 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { DrillAndCompletionIcon } from 'icons/DrillAndCompletionIcon';
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
 import { useTheme } from '@material-ui/core/styles';
 
@@ -17,21 +11,24 @@ export interface AppCardProps {
   domainTitle: string;
   appTitle: string;
   appIcon: JSX.Element;
+  cardState: {
+    isDisabled: boolean;
+    isError: boolean;
+  };
 }
 
 export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
-  const { appIcon, domainTitle, appTitle } = props;
-  const classes = useStyles();
+  const { appIcon, domainTitle, appTitle, cardState } = props;
   const theme = useTheme();
+
+  const classes = useStyles(props);
 
   return (
     <Card className={classes.root} elevation={2}>
       <Grid container>
         <Grid item container className={classes.mainContent}>
           <Grid item>
-            <Typography variant='h3' className={classes.domainTitle}>
-              {domainTitle}
-            </Typography>
+            <div className={classes.domainTitle}>{domainTitle}</div>
           </Grid>
           <Grid
             item
@@ -40,7 +37,9 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
             wrap='nowrap'
             alignItems='center'
           >
-            <Grid item>{appIcon}</Grid>
+            <Grid item className={classes.appIcon}>
+              {appIcon}
+            </Grid>
             <Grid item>
               <div className={classes.AppTitle}>{appTitle}</div>
             </Grid>
@@ -52,10 +51,12 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
           <SettingsIcon fontSize='small' color='disabled' />
         </Grid>
         <Grid item>
-          <CheckCircleOutlineRoundedIcon
-            fontSize='small'
-            htmlColor={theme.palette.success.main}
-          />
+          {!cardState.isDisabled && (
+            <CheckCircleOutlineRoundedIcon
+              fontSize='small'
+              htmlColor={theme.palette.success.main}
+            />
+          )}
         </Grid>
       </Grid>
     </Card>
@@ -64,28 +65,52 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    width: '240px',
+    width: '210px',
     height: '125px',
-    margin: '0px 20px 10px 0px',
+    margin: '0px 0px 0px 0px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    backgroundColor: theme.palette.primary.light,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
   domainTitle: {
-    // margin: '0px 0px 0px 0px',
+    color: (props: AppCardProps) => {
+      return props.cardState.isDisabled
+        ? theme.palette.text.disabled
+        : theme.palette.text.secondary;
+    },
+    fontWeight: 600,
+    fontSize: '12px',
+    letterSpacing: '0.30px',
+    lineHeight: '28px',
   },
 
   AppTitle: {
-    color: theme.palette.text.primary,
+    color: (props: AppCardProps) => {
+      return props.cardState.isDisabled
+        ? theme.palette.text.disabled
+        : theme.palette.text.primary;
+    },
     fontSize: '18px',
     letterSpacing: '-1.0px',
     lineHeight: '16px',
     fontWeight: 600,
   },
+
   mainContent: {
     padding: '2px 10px',
   },
   settings: {
     padding: '0px 4px',
+  },
+  appIcon: {
+    '& $svg': {
+      '&:hover': {
+        color: 'red',
+      },
+    },
   },
 }));

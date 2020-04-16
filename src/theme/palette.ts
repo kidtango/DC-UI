@@ -9,7 +9,7 @@ export default {
   white,
   primary: {
     contrastText: white,
-    dark: colors.grey[900],
+    dark: '#E9E9E9',
     main: '#8C8F93',
     light: '#F5F5F5',
   },
@@ -46,18 +46,23 @@ export default {
   text: {
     primary: '#212121',
     secondary: '#666666',
-    disabled: '#B6B6B6',
+    disabled: '#DEDEDE',
     link: colors.blue[600],
   },
   background: {
     default: '#F4F6F8',
     paper: white,
   },
-  failure: {
-    dark: colors.blueGrey[100],
-    main: colors.blueGrey[500],
-  },
   divider: colors.grey[200],
-  icon: lightBlue,
-  iconActive: '#009DD9',
+  icon: {
+    standards: '#003653',
+    risk: '#BA3093',
+    RTM: '#769231',
+    rigAllocation: '#E5601F',
+    wells: '#009DD9',
+    sideBarIcon: '#8C8F93',
+    active: '#6B6D6F',
+    inActive: '#DEDEDE',
+    error: '#E21836',
+  },
 };

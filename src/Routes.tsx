@@ -4,7 +4,7 @@ import { Switch, Redirect } from 'react-router-dom';
 import { RouteWithLayout } from './components/RouteWithLayout/RouteWithLayout';
 import { Main } from 'layout';
 import Risk from 'view/Risk';
-import DrillingAndCompletion from 'view/DrillingAndCompletion';
+import DrillingAndCompletion from 'view/WellsSystemSuite';
 
 export const Routes: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ export const Routes: React.FC = () => {
         component={DrillingAndCompletion}
         exact
         layout={Main}
-        path='/drillingAndCompletion'
+        path='/drillingandcompletion'
       />
     </Switch>
   );

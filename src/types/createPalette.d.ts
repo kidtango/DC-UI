@@ -1,17 +1,35 @@
-// import * as createPalette from '@material-ui/core/styles/createPalette';
+import * as createPalette from '@material-ui/core/styles/createPalette';
 
 declare module '@material-ui/core/styles/createPalette' {
+  interface IconPaletteColorOptions {
+    standards?: string;
+    risk?: string;
+    RTM?: string;
+    rigAllocation?: string;
+    wells?: string;
+    sideBarIcon?: string;
+    active?: string;
+    inActive?: string;
+    error?: string;
+  }
+
+  interface IconPaletteColor {
+    standards: string;
+    risk: string;
+    RTM: string;
+    rigAllocation: string;
+    wells: string;
+    sideBarIcon: string;
+    active: string;
+    inActive: string;
+    error: string;
+  }
+
   interface PaletteOptions {
-    failure?: PaletteColorOptions;
-    iconActive?: string;
-    text?: {
-      light: string;
-    };
+    icon?: IconPaletteColorOptions;
   }
 
   interface Palette {
-    failure: PaletteColor;
-    iconActive: string;
-    light: string;
+    icon: IconPaletteColor;
   }
 }
