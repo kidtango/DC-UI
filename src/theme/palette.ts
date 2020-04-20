@@ -39,9 +39,9 @@ export default {
   },
   error: {
     contrastText: white,
-    dark: colors.red[900],
-    main: colors.red[600],
-    light: colors.red[400],
+    dark: '#fdd1d8c2',
+    main: '#E21836',
+    light: '#FDD1D8',
   },
   text: {
     primary: '#212121',

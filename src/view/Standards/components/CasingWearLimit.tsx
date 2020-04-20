@@ -1,25 +1,29 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core';
+import { makeStyles, Theme, useTheme } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { AppCardProps, AppCard } from 'components/AppCard/AppCard';
 
 export interface CasingWearLimitProps {
   isError: boolean;
   isDisabled: boolean;
+  isActive: boolean;
 }
 
 const CasingWearLimit: React.FC<CasingWearLimitProps> = (
   props: CasingWearLimitProps
 ) => {
-  const { isError, isDisabled } = props;
+  const { isError, isDisabled, isActive } = props;
   const classes = useStyles(props);
+  const theme = useTheme();
 
   const appCardContents: AppCardProps = {
     domainTitle: 'STANDARDS',
+    iconColor: theme.palette.icon.standards,
     appTitle: 'Casing wear limit tool',
     cardState: {
       isError,
       isDisabled,
+      isActive,
     },
     appIcon: <SettingsIcon fontSize='inherit' className={classes.domainIcon} />,
   };

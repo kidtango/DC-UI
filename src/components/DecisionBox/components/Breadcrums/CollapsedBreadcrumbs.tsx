@@ -26,5 +26,5 @@ export function CollapsedBreadcrumbs() {
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-  root: { color: theme.palette.text.disabled },
+  root: { color: theme.palette.primary.main },
 }));

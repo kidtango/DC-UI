@@ -9,7 +9,6 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import { HamburgerMenuIcon } from 'icons/HamburgerMenuIcon';
-import { IconButton } from '@material-ui/core';
 
 const StyledMenu = withStyles({
   paper: {

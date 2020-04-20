@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
@@ -10,21 +9,26 @@ import { useTheme } from '@material-ui/core/styles';
 export interface AppCardProps {
   domainTitle: string;
   appTitle: string;
+  iconColor?: string;
   appIcon: JSX.Element;
   cardState: {
     isDisabled: boolean;
     isError: boolean;
+    isActive: boolean;
   };
 }
 
 export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
   const { appIcon, domainTitle, appTitle, cardState } = props;
+
   const theme = useTheme();
 
   const classes = useStyles(props);
 
+  const handleClick = () => console.log('click');
+
   return (
-    <Card className={classes.root} elevation={2}>
+    <Card className={classes.root} elevation={2} onClick={handleClick}>
       <Grid container>
         <Grid item container className={classes.mainContent}>
           <Grid item>
@@ -51,7 +55,7 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
           <SettingsIcon fontSize='small' color='disabled' />
         </Grid>
         <Grid item>
-          {!cardState.isDisabled && (
+          {!cardState.isDisabled && !cardState.isError && (
             <CheckCircleOutlineRoundedIcon
               fontSize='small'
               htmlColor={theme.palette.success.main}
@@ -67,13 +71,43 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '210px',
     height: '125px',
+    cursor: 'pointer',
     margin: '0px 0px 0px 0px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: theme.palette.primary.light,
+    padding: 1,
+    border: (props: AppCardProps) => {
+      if (props.cardState.isActive) return `2px solid #009DD9`;
+    },
+    backgroundColor: (props: AppCardProps) => {
+      if (props.cardState.isError) {
+        return theme.palette.error.light;
+      }
+
+      return theme.palette.primary.light;
+    },
     '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: (props: AppCardProps) => {
+        if (props.cardState.isError) {
+          return theme.palette.error.dark;
+        }
+
+        return theme.palette.primary.dark;
+      },
+      '& $appIcon': {
+        '& svg': {
+          color: (props: AppCardProps) => {
+            if (props.cardState.isError) {
+              return theme.palette.error.main;
+            }
+            if (props.cardState.isDisabled) {
+              return theme.palette.text.disabled;
+            }
+            return props.iconColor;
+          },
+        },
+      },
     },
   },
   domainTitle: {
@@ -91,25 +125,41 @@ const useStyles = makeStyles((theme: Theme) => ({
   AppTitle: {
     color: (props: AppCardProps) => {
       return props.cardState.isDisabled
-        ? theme.palette.text.disabled
-        : theme.palette.text.primary;
+        ? theme.palette.icon.inActive
+        : theme.palette.icon.active;
     },
     fontSize: '18px',
-    letterSpacing: '-1.0px',
-    lineHeight: '16px',
+    // letterSpacing: -1,
+    lineHeight: '20px',
     fontWeight: 600,
   },
 
   mainContent: {
-    padding: '2px 10px',
+    padding: '0px 10px',
   },
   settings: {
     padding: '0px 4px',
   },
   appIcon: {
     '& $svg': {
+      width: 60,
+      height: 60,
+      marginLeft: -10,
+      color: (props: AppCardProps) => {
+        if (props.cardState.isError) {
+          return theme.palette.error.main;
+        }
+
+        if (props.cardState.isDisabled) {
+          return theme.palette.text.disabled;
+        }
+
+        return theme.palette.icon.active;
+      },
       '&:hover': {
-        color: 'red',
+        color: (props: AppCardProps) => {
+          return props.iconColor;
+        },
       },
     },
   },

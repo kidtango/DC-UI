@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { makeStyles, Theme, Button } from '@material-ui/core';
 import { NavLink as RouterLink } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const CustomRouterLink = forwardRef((props: any, ref: any) => (
   <div ref={ref}>
@@ -22,14 +23,21 @@ export const NavItem: React.FC<Props> = (props: Props) => {
   const classes = useStyles(page);
 
   return (
-    <Button
-      activeClassName={classes.active}
-      className={classes.button}
-      component={CustomRouterLink}
-      to={page.href}
+    <Tooltip
+      title={page.title}
+      placement='right'
+      arrow
+      classes={{ tooltip: classes.label }}
     >
-      <div className={classes.icon}>{page.icon}</div>
-    </Button>
+      <Button
+        activeClassName={classes.active}
+        className={classes.button}
+        component={CustomRouterLink}
+        to={page.href}
+      >
+        <div className={classes.icon}>{page.icon}</div>
+      </Button>
+    </Tooltip>
   );
 };
 
@@ -57,4 +65,5 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: (props: { color: string }) => props.color,
     },
   },
+  label: { fontSize: 16 },
 }));

@@ -8,11 +8,9 @@ import { WellsSystemSuiteIcon } from 'icons/WellsSystemSuiteIcon';
 import { RigAllocationIcon } from 'icons/RigAllocationIcon';
 import { RTMIcon } from 'icons/RTMIcon';
 import { StandardsIcon } from 'icons/StandardsIcon';
-import { SidebarNav } from './components';
+import { SidebarNav, BottomNavItems, SidebarTopMenu } from './components';
 import { RiskIcon } from 'icons/RiskIcon';
 import { HomeIcon } from 'icons/HomeIcon';
-
-import SidebarTopMenu from './components/SidebarTopMenu';
 
 interface Props {
   variant?: 'permanent' | 'persistent' | 'temporary';
@@ -73,12 +71,18 @@ export const Sidebar: React.FC<Props> = (props: Props) => {
         <SidebarNav className={classes.nav} pages={pages} />
       </div>
 
-      {/* <div>Settings</div> */}
+      <div className={classes.settings}>
+        <BottomNavItems />
+      </div>
     </SideNav>
   );
 };
 
-const useStyles = makeStyles((theme: Theme) => ({}));
+const useStyles = makeStyles((theme: Theme) => ({
+  settings: {
+    alignItems: 'center',
+  },
+}));
 
 const SideNav = styled('div')({
   display: 'flex',
@@ -88,5 +92,5 @@ const SideNav = styled('div')({
   background: '#DEDEDE',
   minHeight: '95vh',
   justifyContent: 'space-between',
-  alignContent: 'left',
+  alignContent: 'center',
 });

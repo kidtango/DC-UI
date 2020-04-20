@@ -63,14 +63,27 @@ export const WellsSystemSuite: React.FC = () => {
                       <SlurryAndSpacerWeight
                         isDisabled={false}
                         isError={false}
+                        isActive={true}
                       />
                       <ProgressArrowIcon fontSize='small' />
 
-                      <RiskProfileBuilder isDisabled={false} isError={true} />
+                      <RiskProfileBuilder
+                        isDisabled={false}
+                        isError={true}
+                        isActive={false}
+                      />
                       <ProgressArrowIcon fontSize='small' />
-                      <CasingWearLimit isDisabled={true} isError={false} />
+                      <CasingWearLimit
+                        isDisabled={false}
+                        isError={false}
+                        isActive={false}
+                      />
                       <ProgressArrowIcon fontSize='small' />
-                      <RigSelectionView isDisabled={true} isError={false} />
+                      <RigSelectionView
+                        isDisabled={true}
+                        isError={false}
+                        isActive={false}
+                      />
                       <AppConnectorIcon
                         fontSize='small'
                         className={classes.appConnectIcon}
@@ -88,24 +101,31 @@ export const WellsSystemSuite: React.FC = () => {
                       <SlurryAndSpacerWeight
                         isDisabled={true}
                         isError={false}
+                        isActive={false}
                       />
                       <ProgressArrowIcon fontSize='small' />
 
-                      <RiskProfileBuilder isDisabled={true} isError={false} />
-                      <ProgressArrowIcon fontSize='small' />
-                      <SlurryAndSpacerWeight
+                      <RiskProfileBuilder
                         isDisabled={true}
                         isError={false}
+                        isActive={false}
                       />
                       <ProgressArrowIcon fontSize='small' />
                       <SlurryAndSpacerWeight
                         isDisabled={true}
                         isError={false}
+                        isActive={false}
                       />
-                      <AppConnectorIcon
+                      <ProgressArrowIcon fontSize='small' />
+                      <SlurryAndSpacerWeight
+                        isDisabled={true}
+                        isError={false}
+                        isActive={false}
+                      />
+                      {/* <AppConnectorIcon
                         fontSize='small'
                         className={classes.appConnectIcon}
-                      />
+                      /> */}
                     </Grid>
                   </Grid>
                 </Grid>
