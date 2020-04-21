@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { makeStyles, Theme, useTheme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/styles';
-import { Theme, useTheme } from '@material-ui/core';
-import { WellsSystemSuiteIcon } from 'icons/WellsSystemSuiteIcon';
-import DecisionBox from 'components/DecisionBox';
-import { DecisionBoxProps } from 'components/DecisionBox/DecisionBox';
+
 import { HeaderProps, Header } from 'components/Header/Header';
-
-import { AppConnectorIcon } from 'icons/AppConnectorIcon';
-import { DrillingRig } from 'icons/DrillingRig';
-import { ProgressArrowIcon } from 'icons/ProgressArrowIcon';
+import { RTMIcon } from 'icons/RTMIcon';
 import {
-  CasingWearLimit,
-  SlurryAndSpacerWeight,
-} from 'view/Standards/components';
-import { RigSelectionView } from 'view/RigAllocation/components';
+  DecisionBoxProps,
+  DecisionBox,
+} from 'components/DecisionBox/DecisionBox';
+import {
+  PipeTallyGenerator,
+  DrillPipeConnectorsBHA,
+  CasingPointLocatorTool,
+  WellPlaningOptimizer,
+} from './components';
 import { RiskProfileBuilder } from 'view/Risk/components';
+import { AppConnectorIcon } from 'icons/AppConnectorIcon';
+import { ProgressArrowIcon } from 'icons/ProgressArrowIcon';
 
-export const WellsSystemSuite: React.FC = () => {
+export const RTMWellExecution: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const [isEnabled, setIsEnabled] = useState(false);
 
   const headerContents: HeaderProps = {
-    title: 'Wells System Suite',
-    subTitle: 'System Lap Application',
-    icon: <WellsSystemSuiteIcon fontSize='inherit' />,
-    iconColor: theme.palette.icon.wells,
+    title: 'RTM for well execution suite',
+    subTitle: 'System Lap Applications',
+    icon: <RTMIcon fontSize='inherit' />,
+    iconColor: theme.palette.icon.RTM,
   };
 
   const decisionBoxContents: DecisionBoxProps = {
     content:
-      'Given a well plan, is is advisable to drill? To start, we have pre-selected three apps to help answer this question.',
-    actionButtonTitle: 'evaluation',
+      'Click the pipe tally generator app below to generate a set of pipe tallies and their associated risk for your well depth and pressure, or select another available app.',
   };
 
   return (
@@ -40,7 +39,7 @@ export const WellsSystemSuite: React.FC = () => {
       {/* Header section */}
       <Header {...headerContents} />
 
-      {/* Decision Box section */}
+      {/* Decision Box Section */}
       <Grid container spacing={1}>
         <Grid
           item
@@ -59,30 +58,30 @@ export const WellsSystemSuite: React.FC = () => {
                 <Grid item container>
                   <Grid item container sm={12} className={classes.cardRow}>
                     <Grid item container alignItems='center'>
-                      <SlurryAndSpacerWeight
-                        isDisabled={false}
+                      <PipeTallyGenerator
                         isError={false}
-                        isActive={true}
+                        isDisabled={false}
+                        isActive={false}
                       />
                       <ProgressArrowIcon fontSize='small' />
+                      <DrillPipeConnectorsBHA
+                        isError={false}
+                        isDisabled={false}
+                        isActive={false}
+                      />
+                      <ProgressArrowIcon fontSize='small' />
+                      <CasingPointLocatorTool
+                        isError={false}
+                        isDisabled={false}
+                        isActive={false}
+                      />
+                      <ProgressArrowIcon fontSize='small' />
+                      <WellPlaningOptimizer
+                        isError={false}
+                        isDisabled={false}
+                        isActive={false}
+                      />
 
-                      <RiskProfileBuilder
-                        isDisabled={false}
-                        isError={true}
-                        isActive={false}
-                      />
-                      <ProgressArrowIcon fontSize='small' />
-                      <CasingWearLimit
-                        isDisabled={false}
-                        isError={false}
-                        isActive={false}
-                      />
-                      <ProgressArrowIcon fontSize='small' />
-                      <RigSelectionView
-                        isDisabled={true}
-                        isError={false}
-                        isActive={false}
-                      />
                       <AppConnectorIcon
                         fontSize='small'
                         className={classes.appConnectIcon}
@@ -97,28 +96,9 @@ export const WellsSystemSuite: React.FC = () => {
                 <Grid item container>
                   <Grid item container sm={12} className={classes.cardRow}>
                     <Grid item container alignItems='center'>
-                      <SlurryAndSpacerWeight
-                        isDisabled={true}
-                        isError={false}
-                        isActive={false}
-                      />
-                      <ProgressArrowIcon fontSize='small' />
-
                       <RiskProfileBuilder
-                        isDisabled={true}
                         isError={false}
-                        isActive={false}
-                      />
-                      <ProgressArrowIcon fontSize='small' />
-                      <SlurryAndSpacerWeight
-                        isDisabled={true}
-                        isError={false}
-                        isActive={false}
-                      />
-                      <ProgressArrowIcon fontSize='small' />
-                      <SlurryAndSpacerWeight
-                        isDisabled={true}
-                        isError={false}
+                        isDisabled={false}
                         isActive={false}
                       />
                       {/* <AppConnectorIcon
@@ -133,9 +113,9 @@ export const WellsSystemSuite: React.FC = () => {
           </Grid>
         </Grid>
 
-        <Grid item container sm={3} className={classes.drillingRigContainer}>
+        {/* <Grid item container sm={3} className={classes.drillingRigContainer}>
           <DrillingRig className={classes.drillingRig} fontSize='inherit' />
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );
@@ -143,20 +123,14 @@ export const WellsSystemSuite: React.FC = () => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: { background: '#F5F5F5' },
+  appContainer: { marginBottom: '20px' },
+  cardRow: { position: 'relative' },
 
-  appContainer: {
-    marginBottom: '20px',
-    // backgroundColor: 'orangeRed',
-  },
-  cardRow: {
-    position: 'relative',
-  },
   appConnectIcon: {
     position: 'absolute',
     top: '100%',
     left: '100px',
   },
-  drillingRigContainer: {},
   drillingRig: {
     minWidth: 310,
     minHeight: 610,

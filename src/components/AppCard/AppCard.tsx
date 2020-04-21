@@ -72,11 +72,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '210px',
     height: '125px',
     cursor: 'pointer',
-    margin: '0px 0px 0px 0px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 1,
+    padding: 4,
     border: (props: AppCardProps) => {
       if (props.cardState.isActive) return `2px solid #009DD9`;
     },
@@ -142,9 +141,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   appIcon: {
     '& $svg': {
-      width: 60,
-      height: 60,
+      width: 52,
+      height: 52,
       marginLeft: -10,
+      marginRight: 1,
       color: (props: AppCardProps) => {
         if (props.cardState.isError) {
           return theme.palette.error.main;

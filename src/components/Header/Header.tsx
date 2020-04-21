@@ -9,12 +9,13 @@ export interface HeaderProps {
   title: string;
   subTitle: string;
   icon: React.ReactChild;
+  iconColor: string;
 }
 
 export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
   const { title, subTitle, icon } = props;
 
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   return (
     <div className={classes.root}>
@@ -25,7 +26,9 @@ export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
         direction='row'
         alignItems='center'
       >
-        <Grid item>{icon}</Grid>
+        <Grid item className={classes.headerIcon}>
+          {icon}
+        </Grid>
         <Grid item className={classes.appTitle}>
           <Typography variant='h2'>{subTitle}</Typography>
           <Typography variant='h1'>{title}</Typography>
@@ -42,4 +45,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   appTitle: { marginRight: 'auto' },
   chevronLogo: { height: '80px', width: '75px' },
+  headerIcon: {
+    '& svg': {
+      height: '60px',
+      width: '60px',
+      color: (props: HeaderProps) => props.iconColor,
+    },
+  },
 }));

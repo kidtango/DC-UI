@@ -52,7 +52,7 @@ export const Sidebar: React.FC<Props> = (props: Props) => {
     },
     {
       title: 'RTM for well execution',
-      href: '/rtmWellExecution',
+      href: '/RTMWellExecution',
       icon: <RTMIcon fontSize='large' />,
       color: theme.palette.icon.RTM,
     },

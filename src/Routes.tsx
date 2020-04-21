@@ -4,17 +4,24 @@ import { Switch, Redirect } from 'react-router-dom';
 import { RouteWithLayout } from './components/RouteWithLayout/RouteWithLayout';
 import { Main } from 'layout';
 import Risk from 'view/Risk';
-import DrillingAndCompletion from 'view/WellsSystemSuite';
+import WellsSystemSuite from 'view/WellsSystemSuite';
+import RTMWellExecution from 'view/RTMWellExecution';
 
 export const Routes: React.FC = () => {
   return (
     <Switch>
-      {/* <Redirect exact from='/' to='/drillAndCompletion' /> */}
+      <Redirect exact from='/' to='/WellsSystemSuiteIcon' />
       <RouteWithLayout
-        component={DrillingAndCompletion}
+        component={WellsSystemSuite}
         exact
         layout={Main}
-        path='/drillingandcompletion'
+        path='/WellsSystemSuiteIcon'
+      />
+      <RouteWithLayout
+        component={RTMWellExecution}
+        exact
+        layout={Main}
+        path='/RTMWellExecution'
       />
     </Switch>
   );
