@@ -12,12 +12,20 @@ export interface DecisionBoxProps {
   breadcrumbs?: string[];
   content?: string;
   actionButtonTitle?: string;
+  inputForm?: JSX.Element;
+  showForm: boolean | undefined;
 }
 
 export const DecisionBox: React.FC<DecisionBoxProps> = (
   props: DecisionBoxProps
 ) => {
-  const { content, breadcrumbs, actionButtonTitle } = props;
+  const {
+    content,
+    breadcrumbs,
+    actionButtonTitle,
+    inputForm,
+    showForm,
+  } = props;
 
   const classes = useStyles();
 
@@ -28,8 +36,16 @@ export const DecisionBox: React.FC<DecisionBoxProps> = (
         {content}
       </Typography>
       {actionButtonTitle && (
-        <Button className={classes.evalButton}>{actionButtonTitle}</Button>
+        <Button
+          variant='contained'
+          color='primary'
+          className={classes.evalButton}
+        >
+          {actionButtonTitle}
+        </Button>
       )}
+
+      {showForm && inputForm}
     </Paper>
   );
 };
@@ -46,11 +62,5 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   evalButton: {
     marginTop: '20px',
-    color: 'white',
-    backgroundColor: '#0066B2',
-    textTransform: 'none',
-    '&:hover': {
-      backgroundColor: '#065694',
-    },
   },
 }));

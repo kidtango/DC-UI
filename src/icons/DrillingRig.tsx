@@ -159,7 +159,7 @@ export const DrillingRig: React.FC<SvgIconProps> = (props: SvgIconProps) => {
         <path fill='#ccc' d='M200.76 381.778h20.239v226.206H200.76z' />
         <path fill='#e6e6e6' d='M204.07 382.558h6.346v222.259h-6.346z' />
       </g>
-      <g font-size='16' font-family='Roboto-Regular,Roboto'>
+      <g fontSize='16' fontFamily='Roboto-Regular,Roboto'>
         <text transform='translate(366.032 96.255)'>
           <tspan x='-70.008' y='0'>
             drilling rig
@@ -340,7 +340,7 @@ export const DrillingRig: React.FC<SvgIconProps> = (props: SvgIconProps) => {
             rx='8.796'
             ry='8.791'
             stroke='#dbdbdd'
-            stroke-miterlimit='10'
+            strokeMiterlimit='10'
           />
           <ellipse
             cx='4.954'

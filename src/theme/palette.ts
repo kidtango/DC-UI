@@ -2,22 +2,21 @@ import { colors } from '@material-ui/core';
 
 const white = '#FFFFFF';
 const black = '#000000';
-const lightBlue = '#009DD9';
 
 export default {
   black,
   white,
   primary: {
     contrastText: white,
-    dark: '#E9E9E9',
-    main: '#8C8F93',
+    dark: '#065694',
+    main: '#0066B2',
     light: '#F5F5F5',
   },
   secondary: {
     contrastText: white,
-    dark: colors.blue[900],
-    main: colors.blue[800],
-    light: lightBlue,
+    dark: '#818386',
+    main: '#8C8F93',
+    light: '#e9e9e9',
   },
   success: {
     contrastText: white,

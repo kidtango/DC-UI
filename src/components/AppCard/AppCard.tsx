@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
 import { useTheme } from '@material-ui/core/styles';
+import { useRTMContext } from 'view/RTMWellExecution/contexts/RTMContext';
 
 export interface AppCardProps {
   domainTitle: string;
@@ -25,10 +26,8 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
 
   const classes = useStyles(props);
 
-  const handleClick = () => console.log('click');
-
   return (
-    <Card className={classes.root} elevation={2} onClick={handleClick}>
+    <Card className={classes.root} elevation={2}>
       <Grid container>
         <Grid item container className={classes.mainContent}>
           <Grid item>
@@ -92,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) => ({
           return theme.palette.error.dark;
         }
 
-        return theme.palette.primary.dark;
+        return theme.palette.secondary.light;
       },
       '& $appIcon': {
         '& svg': {

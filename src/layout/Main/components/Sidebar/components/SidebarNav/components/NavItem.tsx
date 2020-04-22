@@ -45,16 +45,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   button: {
     width: '70px',
     padding: '0 0',
+    borderLeft: '4px solid #DEDEDE',
     borderRadius: '0px',
     '&:hover': {
-      borderLeft: '5px solid',
+      borderLeft: '4px solid',
       borderLeftColor: (props: { color: string }) => props.color,
       '& $icon': {
         color: (props: { color: string }) => props.color,
       },
     },
     '& $icon': {
-      color: theme.palette.primary.main,
+      color: theme.palette.icon.sideBarIcon,
     },
   },
   icon: {
@@ -63,6 +64,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   active: {
     '& $icon': {
       color: (props: { color: string }) => props.color,
+    },
+    borderLeft: (props: { color: string }) => {
+      return `4px solid ${props.color}`;
     },
   },
   label: { fontSize: 16 },

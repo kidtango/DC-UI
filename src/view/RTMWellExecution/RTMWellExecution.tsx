@@ -13,14 +13,17 @@ import {
   DrillPipeConnectorsBHA,
   CasingPointLocatorTool,
   WellPlaningOptimizer,
+  PipeTallyInputForm,
 } from './components';
 import { RiskProfileBuilder } from 'view/Risk/components';
 import { AppConnectorIcon } from 'icons/AppConnectorIcon';
 import { ProgressArrowIcon } from 'icons/ProgressArrowIcon';
+import { useRTMContext } from './contexts/RTMContext';
 
 export const RTMWellExecution: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const { decisionBoxContent, showInputForm } = useRTMContext();
 
   const headerContents: HeaderProps = {
     title: 'RTM for well execution suite',
@@ -30,8 +33,9 @@ export const RTMWellExecution: React.FC = () => {
   };
 
   const decisionBoxContents: DecisionBoxProps = {
-    content:
-      'Click the pipe tally generator app below to generate a set of pipe tallies and their associated risk for your well depth and pressure, or select another available app.',
+    content: decisionBoxContent,
+    inputForm: <PipeTallyInputForm />,
+    showForm: showInputForm,
   };
 
   return (
@@ -66,22 +70,21 @@ export const RTMWellExecution: React.FC = () => {
                       <ProgressArrowIcon fontSize='small' />
                       <DrillPipeConnectorsBHA
                         isError={false}
-                        isDisabled={false}
+                        isDisabled={true}
                         isActive={false}
                       />
                       <ProgressArrowIcon fontSize='small' />
                       <CasingPointLocatorTool
                         isError={false}
-                        isDisabled={false}
+                        isDisabled={true}
                         isActive={false}
                       />
                       <ProgressArrowIcon fontSize='small' />
                       <WellPlaningOptimizer
                         isError={false}
-                        isDisabled={false}
+                        isDisabled={true}
                         isActive={false}
                       />
-
                       <AppConnectorIcon
                         fontSize='small'
                         className={classes.appConnectIcon}
@@ -125,7 +128,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: { background: '#F5F5F5' },
   appContainer: { marginBottom: '20px' },
   cardRow: { position: 'relative' },
-
   appConnectIcon: {
     position: 'absolute',
     top: '100%',

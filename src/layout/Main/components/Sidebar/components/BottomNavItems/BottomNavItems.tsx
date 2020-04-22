@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '100%',
 
     '& svg': {
-      color: theme.palette.primary.main,
+      color: theme.palette.secondary.main,
       '&:hover': {
         color: '#009DD9',
       },

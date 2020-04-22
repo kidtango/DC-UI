@@ -32,7 +32,9 @@ export const WellsSystemSuite: React.FC = () => {
   const decisionBoxContents: DecisionBoxProps = {
     content:
       'Given a well plan, is is advisable to drill? To start, we have pre-selected three apps to help answer this question.',
-    actionButtonTitle: 'evaluation',
+    actionButtonTitle: 'evaluate',
+    showForm: false,
+    inputForm: undefined,
   };
 
   return (

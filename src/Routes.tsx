@@ -6,6 +6,7 @@ import { Main } from 'layout';
 import Risk from 'view/Risk';
 import WellsSystemSuite from 'view/WellsSystemSuite';
 import RTMWellExecution from 'view/RTMWellExecution';
+import RTMContextProvider from 'view/RTMWellExecution/contexts';
 
 export const Routes: React.FC = () => {
   return (
@@ -17,12 +18,14 @@ export const Routes: React.FC = () => {
         layout={Main}
         path='/WellsSystemSuiteIcon'
       />
-      <RouteWithLayout
-        component={RTMWellExecution}
-        exact
-        layout={Main}
-        path='/RTMWellExecution'
-      />
+      <RTMContextProvider>
+        <RouteWithLayout
+          component={RTMWellExecution}
+          exact
+          layout={Main}
+          path='/RTMWellExecution'
+        />
+      </RTMContextProvider>
     </Switch>
   );
 };

@@ -10,6 +10,54 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import { HamburgerMenuIcon } from 'icons/HamburgerMenuIcon';
 
+export function SidebarTopMenu() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const classes = useStyles();
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button color='secondary' onClick={handleClick} className={classes.root}>
+        <HamburgerMenuIcon fontSize='large' />
+      </Button>
+      <StyledMenu
+        id='customized-menu'
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <StyledMenuItem>
+          <ListItemIcon>
+            <SendIcon fontSize='small' />
+          </ListItemIcon>
+          <ListItemText primary='Sent mail' />
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <DraftsIcon fontSize='small' />
+          </ListItemIcon>
+          <ListItemText primary='Drafts' />
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <InboxIcon fontSize='small' />
+          </ListItemIcon>
+          <ListItemText primary='Inbox' />
+        </StyledMenuItem>
+      </StyledMenu>
+    </div>
+  );
+}
+
 const StyledMenu = withStyles({
   paper: {
     border: 'none',
@@ -56,51 +104,3 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 }));
-
-export function SidebarTopMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const classes = useStyles();
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <div>
-      <Button color='primary' onClick={handleClick} className={classes.root}>
-        <HamburgerMenuIcon fontSize='large' />
-      </Button>
-      <StyledMenu
-        id='customized-menu'
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <StyledMenuItem>
-          <ListItemIcon>
-            <SendIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary='Sent mail' />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary='Drafts' />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <InboxIcon fontSize='small' />
-          </ListItemIcon>
-          <ListItemText primary='Inbox' />
-        </StyledMenuItem>
-      </StyledMenu>
-    </div>
-  );
-}
