@@ -3,12 +3,11 @@ import { useTheme } from '@material-ui/core';
 import { AppCardProps, AppCard } from 'components/AppCard/AppCard';
 import { RTMIcon } from 'icons/RTMIcon';
 import { useRTMContext } from '../contexts/RTMContext';
-import PipeTallyInputForm from './PipeTallyInputForm';
 
 export interface RigSelectionProps {
   isError: boolean;
   isDisabled: boolean;
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 const PipeTallyGenerator: React.FC<RigSelectionProps> = (
@@ -19,8 +18,8 @@ const PipeTallyGenerator: React.FC<RigSelectionProps> = (
   const theme = useTheme();
   const {
     setDecisionBoxContent,
-    setShowInputForm,
-    showInputForm,
+    pipeTallyGenState,
+    setPipeTallyGenState,
   } = useRTMContext();
 
   const pipeTallyPrompt =
@@ -42,10 +41,14 @@ const PipeTallyGenerator: React.FC<RigSelectionProps> = (
   };
 
   const handleClick = () => {
+    // Toggle pipeTallyGenerator AppCard on and off
+    setPipeTallyGenState!((pipeTallyGenState) => ({
+      ...pipeTallyGenState,
+      isActive: !isActive,
+    }));
     setDecisionBoxContent!(pipeTallyPrompt);
-    setShowInputForm!(!showInputForm);
 
-    if (showInputForm) {
+    if (pipeTallyGenState?.isActive) {
       setDecisionBoxContent!(initialPrompt);
     }
   };

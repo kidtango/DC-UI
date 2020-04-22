@@ -17,7 +17,6 @@ export const SidebarNav: React.FC<Props> = (props: Props) => {
   const { pages, className, ...rest } = props;
 
   const classes = useStyles(pages);
-  console.log(classes.root);
   return (
     <List className={classes.root}>
       {pages.map((page) => (

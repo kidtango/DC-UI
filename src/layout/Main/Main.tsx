@@ -31,8 +31,6 @@ export const Main: React.FC<Props> = (props: Props) => {
 
   const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
-  console.log('isDesktop', isDesktop);
-
   return (
     <div className={classes.root}>
       <Sidebar

@@ -8,14 +8,14 @@ import { useTheme } from '@material-ui/core/styles';
 import { useRTMContext } from 'view/RTMWellExecution/contexts/RTMContext';
 
 export interface AppCardProps {
-  domainTitle: string;
-  appTitle: string;
+  domainTitle?: string;
+  appTitle?: string;
   iconColor?: string;
-  appIcon: JSX.Element;
+  appIcon?: JSX.Element;
   cardState: {
-    isDisabled: boolean;
-    isError: boolean;
-    isActive: boolean;
+    isDisabled?: boolean;
+    isError?: boolean;
+    isActive?: boolean;
   };
 }
 
@@ -76,7 +76,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
     padding: 4,
     border: (props: AppCardProps) => {
-      if (props.cardState.isActive) return `2px solid #009DD9`;
+      if (props.cardState.isActive) {
+        return `2px solid #009DD9`;
+      } else {
+        return '0px';
+      }
     },
     backgroundColor: (props: AppCardProps) => {
       if (props.cardState.isError) {

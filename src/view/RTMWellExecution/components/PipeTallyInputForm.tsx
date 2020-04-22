@@ -2,17 +2,9 @@ import React, { useState } from 'react';
 
 import clsx from 'clsx';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { Button } from '@material-ui/core';
 
 interface State {
@@ -33,12 +25,12 @@ const PipeTallyInputForm: React.FC = () => {
   });
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.root}>
       <FormControl
         className={clsx(classes.margin, classes.textField)}
         variant='outlined'
       >
-        <InputLabel htmlFor='outlined-adornment-password'>
+        <InputLabel htmlFor='outlined-adornment-password' margin='dense'>
           enter depth in ft
         </InputLabel>
         <OutlinedInput
@@ -48,13 +40,14 @@ const PipeTallyInputForm: React.FC = () => {
           // onChange={handleChange('password')}
 
           labelWidth={100}
+          classes={{ root: classes.outlinedInput }}
         />
       </FormControl>
       <FormControl
         className={clsx(classes.margin, classes.textField)}
         variant='outlined'
       >
-        <InputLabel htmlFor='outlined-adornment-password'>
+        <InputLabel htmlFor='outlined-adornment-password' margin='dense'>
           enter pressure in paia
         </InputLabel>
         <OutlinedInput
@@ -64,13 +57,14 @@ const PipeTallyInputForm: React.FC = () => {
           // onChange={handleChange('password')}
 
           labelWidth={135}
+          classes={{ root: classes.outlinedInput }}
         />
       </FormControl>
       <FormControl
         className={clsx(classes.margin, classes.descriptionTextField)}
         variant='outlined'
       >
-        <InputLabel htmlFor='outlined-adornment-password'>
+        <InputLabel htmlFor='outlined-adornment-password' margin='dense'>
           describe event
         </InputLabel>
         <OutlinedInput
@@ -80,17 +74,29 @@ const PipeTallyInputForm: React.FC = () => {
           // onChange={handleChange('password')}
 
           labelWidth={100}
+          classes={{ root: classes.outlinedInput }}
+          error={false}
         />
       </FormControl>
       <div className={classes.buttonGroup}>
-        <Button variant='contained' color='primary' className={classes.submit}>
+        <Button
+          variant='contained'
+          color='primary'
+          className={classes.submit}
+          classes={{ root: classes.buttonRoot }}
+        >
           submit
         </Button>
-        <Button variant='contained' color='secondary' className={classes.clear}>
+        <Button
+          variant='contained'
+          color='secondary'
+          className={classes.clear}
+          classes={{ root: classes.buttonRoot }}
+        >
           clear
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -99,24 +105,26 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       flexWrap: 'wrap',
+      alignItems: 'center',
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(1),
     },
     margin: {
-      marginTop: theme.spacing(4),
-      marginBottom: theme.spacing(1),
       marginRight: theme.spacing(1),
     },
-    withoutLabel: {
-      marginTop: theme.spacing(3),
-    },
+
     textField: {
       width: '20%',
     },
     descriptionTextField: {
-      width: '55%',
+      flex: 1,
+      width: 'auto',
     },
     buttonGroup: {},
     submit: { marginRight: theme.spacing(1) },
     clear: {},
+    buttonRoot: { width: 70, height: 40 },
+    outlinedInput: { height: 40, padding: 0, alignItems: 'end' },
   })
 );
 

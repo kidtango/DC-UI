@@ -23,7 +23,7 @@ import { useRTMContext } from './contexts/RTMContext';
 export const RTMWellExecution: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const { decisionBoxContent, showInputForm } = useRTMContext();
+  const { decisionBoxContent, pipeTallyGenState } = useRTMContext();
 
   const headerContents: HeaderProps = {
     title: 'RTM for well execution suite',
@@ -35,7 +35,7 @@ export const RTMWellExecution: React.FC = () => {
   const decisionBoxContents: DecisionBoxProps = {
     content: decisionBoxContent,
     inputForm: <PipeTallyInputForm />,
-    showForm: showInputForm,
+    showForm: pipeTallyGenState?.isActive,
   };
 
   return (
@@ -65,21 +65,30 @@ export const RTMWellExecution: React.FC = () => {
                       <PipeTallyGenerator
                         isError={false}
                         isDisabled={false}
-                        isActive={false}
+                        isActive={pipeTallyGenState?.isActive}
                       />
-                      <ProgressArrowIcon fontSize='small' />
+                      <ProgressArrowIcon
+                        fontSize='small'
+                        htmlColor={theme.palette.secondary.main}
+                      />
                       <DrillPipeConnectorsBHA
                         isError={false}
                         isDisabled={true}
                         isActive={false}
                       />
-                      <ProgressArrowIcon fontSize='small' />
+                      <ProgressArrowIcon
+                        fontSize='small'
+                        htmlColor={theme.palette.secondary.main}
+                      />
                       <CasingPointLocatorTool
                         isError={false}
                         isDisabled={true}
                         isActive={false}
                       />
-                      <ProgressArrowIcon fontSize='small' />
+                      <ProgressArrowIcon
+                        fontSize='small'
+                        htmlColor={theme.palette.secondary.main}
+                      />
                       <WellPlaningOptimizer
                         isError={false}
                         isDisabled={true}
@@ -88,6 +97,11 @@ export const RTMWellExecution: React.FC = () => {
                       <AppConnectorIcon
                         fontSize='small'
                         className={classes.appConnectIcon}
+                        htmlColor={
+                          pipeTallyGenState?.isActive
+                            ? theme.palette.icon.wells
+                            : theme.palette.secondary.main
+                        }
                       />
                     </Grid>
                   </Grid>
@@ -102,7 +116,7 @@ export const RTMWellExecution: React.FC = () => {
                       <RiskProfileBuilder
                         isError={false}
                         isDisabled={false}
-                        isActive={false}
+                        isActive={pipeTallyGenState?.isActive}
                       />
                       {/* <AppConnectorIcon
                         fontSize='small'

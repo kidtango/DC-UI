@@ -4,9 +4,9 @@ import { RiskIcon } from 'icons/RiskIcon';
 import { useTheme } from '@material-ui/core';
 
 export interface RiskProfileBuilderProps {
-  isError: boolean;
-  isDisabled: boolean;
-  isActive: boolean;
+  isError?: boolean;
+  isDisabled?: boolean;
+  isActive?: boolean;
 }
 
 const RiskProfileBuilder: React.FC<RiskProfileBuilderProps> = (
