@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
 import { useTheme } from '@material-ui/core/styles';
-import { useRTMContext } from 'view/RTMWellExecution/contexts/RTMContext';
 
 export interface AppCardProps {
   domainTitle?: string;
@@ -23,7 +22,6 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
   const { appIcon, domainTitle, appTitle, cardState } = props;
 
   const theme = useTheme();
-
   const classes = useStyles(props);
 
   return (
@@ -37,14 +35,13 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
             item
             container
             direction='row'
-            wrap='nowrap'
             alignItems='center'
           >
             <Grid item className={classes.appIcon}>
               {appIcon}
             </Grid>
-            <Grid item>
-              <div className={classes.AppTitle}>{appTitle}</div>
+            <Grid item className={classes.appTitle}>
+              {appTitle}
             </Grid>
           </Grid>
         </Grid>
@@ -68,13 +65,13 @@ export const AppCard: React.FC<AppCardProps> = (props: AppCardProps) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    width: '210px',
-    height: '125px',
+    width: '220px',
+    height: '130px',
     cursor: 'pointer',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 4,
+    padding: 2,
     border: (props: AppCardProps) => {
       if (props.cardState.isActive) {
         return `2px solid #009DD9`;
@@ -112,6 +109,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  mainContent: {
+    padding: '0px 10px',
+
+  
+  },
   domainTitle: {
     color: (props: AppCardProps) => {
       return props.cardState.isDisabled
@@ -124,21 +126,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: '28px',
   },
 
-  AppTitle: {
+  appTitle: { 
     color: (props: AppCardProps) => {
       return props.cardState.isDisabled
         ? theme.palette.icon.inActive
         : theme.palette.icon.active;
     },
-    fontSize: '18px',
-    // letterSpacing: -1,
+    fontSize: '20px',
+    letterSpacing: -1,
     lineHeight: '20px',
     fontWeight: 600,
+    flex: 1
   },
 
-  mainContent: {
-    padding: '0px 10px',
-  },
+ 
   settings: {
     padding: '0px 4px',
   },
@@ -147,7 +148,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: 52,
       height: 52,
       marginLeft: -10,
-      marginRight: 1,
       color: (props: AppCardProps) => {
         if (props.cardState.isError) {
           return theme.palette.error.main;

@@ -1,24 +1,25 @@
-import React from 'react';
-import { makeStyles, Theme, useTheme } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import React from "react";
+import { makeStyles, Theme, useTheme } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
-import { HeaderProps, Header } from 'components/Header/Header';
-import { RTMIcon } from 'icons/RTMIcon';
+import { HeaderProps, Header } from "components/Header/Header";
+import { RTMIcon } from "icons/RTMIcon";
 import {
   DecisionBoxProps,
   DecisionBox,
-} from 'components/DecisionBox/DecisionBox';
+} from "components/DecisionBox/DecisionBox";
 import {
   PipeTallyGenerator,
   DrillPipeConnectorsBHA,
   CasingPointLocatorTool,
   WellPlaningOptimizer,
   PipeTallyInputForm,
-} from './components';
-import { RiskProfileBuilder } from 'view/Risk/components';
-import { AppConnectorIcon } from 'icons/AppConnectorIcon';
-import { ProgressArrowIcon } from 'icons/ProgressArrowIcon';
-import { useRTMContext } from './contexts/RTMContext';
+} from "./components";
+import { RiskProfileBuilder } from "view/Risk/components";
+import { AppConnectorIcon } from "icons/AppConnectorIcon";
+import { ProgressArrowIcon } from "icons/ProgressArrowIcon";
+import { useRTMContext } from "./contexts/RTMContext";
+import RiskView from "./components/RiskView";
 
 export const RTMWellExecution: React.FC = () => {
   const classes = useStyles();
@@ -26,8 +27,8 @@ export const RTMWellExecution: React.FC = () => {
   const { decisionBoxContent, pipeTallyGenState } = useRTMContext();
 
   const headerContents: HeaderProps = {
-    title: 'RTM for well execution suite',
-    subTitle: 'System Lap Applications',
+    title: "RTM for well execution suite",
+    subTitle: "System Lap Applications",
     icon: <RTMIcon fontSize='inherit' />,
     iconColor: theme.palette.icon.RTM,
   };
@@ -43,7 +44,7 @@ export const RTMWellExecution: React.FC = () => {
       {/* Header section */}
       <Header {...headerContents} />
 
-      {/* Decision Box Section */}
+      {/* Main Contents */}
       <Grid container spacing={1}>
         <Grid
           item
@@ -51,11 +52,10 @@ export const RTMWellExecution: React.FC = () => {
           direction='column'
           justify='flex-start'
           alignItems='flex-start'
-          sm={9}
-        >
+          sm={9}>
+          {/* Decision Box Section */}
           <Grid item container>
             <DecisionBox {...decisionBoxContents} />
-
             <Grid item container>
               {/* App Container #1*/}
               <Grid item container className={classes.appContainer}>
@@ -108,7 +108,7 @@ export const RTMWellExecution: React.FC = () => {
                 </Grid>
               </Grid>
 
-              {/* App Container #1*/}
+              {/* App Container #2*/}
               <Grid container className={classes.appContainer}>
                 <Grid item container>
                   <Grid item container sm={12} className={classes.cardRow}>
@@ -129,7 +129,8 @@ export const RTMWellExecution: React.FC = () => {
             </Grid>
           </Grid>
         </Grid>
-
+        {/* Risk Panels */}
+        <RiskView />
         {/* <Grid item container sm={3} className={classes.drillingRigContainer}>
           <DrillingRig className={classes.drillingRig} fontSize='inherit' />
         </Grid> */}
@@ -139,17 +140,17 @@ export const RTMWellExecution: React.FC = () => {
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
-  root: { background: '#F5F5F5' },
-  appContainer: { marginBottom: '20px' },
-  cardRow: { position: 'relative' },
+  root: { background: "#F5F5F5" },
+  appContainer: { marginBottom: "20px" },
+  cardRow: { position: "relative" },
   appConnectIcon: {
-    position: 'absolute',
-    top: '100%',
-    left: '100px',
+    position: "absolute",
+    top: "100%",
+    left: "100px",
   },
   drillingRig: {
     minWidth: 310,
     minHeight: 610,
-    marginRight: 'auto',
+    marginRight: "auto",
   },
 }));
