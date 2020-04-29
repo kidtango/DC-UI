@@ -16,7 +16,6 @@
   --shadow-light: 0 2rem 5rem #0000000f;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -35,8 +34,8 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
- 
+  font-family: "Roboto", sans-serif;
+
   line-height: 1.6;
   background-image: linear-gradient(
     to right bottom,
@@ -45,8 +44,6 @@ body {
   );
   background-size: cover;
   background-repeat: no-repeat;
-
-  height: 100vh;
 }
 
 a {

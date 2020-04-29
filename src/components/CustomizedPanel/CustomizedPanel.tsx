@@ -1,9 +1,8 @@
 import React from "react";
-import { DialogTitle } from "@material-ui/core";
 import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import MuiExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 import { withStyles, Theme, makeStyles } from "@material-ui/core";
 
 export interface CustomizedPanelProps {
@@ -27,7 +26,7 @@ const CustomizedPanel = (props: CustomizedPanelProps) => {
   };
 
   return (
-    <div className={classes.root}>
+    <Paper className={classes.root}>
       <ExpansionPanel
         square={false}
         expanded={expanded === panelName}
@@ -39,7 +38,7 @@ const CustomizedPanel = (props: CustomizedPanelProps) => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>{children}</ExpansionPanelDetails>
       </ExpansionPanel>
-    </div>
+    </Paper>
   );
 };
 

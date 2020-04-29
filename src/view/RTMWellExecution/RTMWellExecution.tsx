@@ -14,12 +14,89 @@ import {
   CasingPointLocatorTool,
   WellPlaningOptimizer,
   PipeTallyInputForm,
+  RiskView,
 } from "./components";
 import { RiskProfileBuilder } from "view/Risk/components";
 import { AppConnectorIcon } from "icons/AppConnectorIcon";
 import { ProgressArrowIcon } from "icons/ProgressArrowIcon";
 import { useRTMContext } from "./contexts/RTMContext";
-import RiskView from "./components/RiskView";
+import PipeTallyTables from "./components/PipeTallyTables";
+
+// Mock Data Start
+
+const pipeTally = {
+  profileNumber: "02",
+  pipes: [
+    {
+      id: "001",
+      pipeOrder: "001",
+      pipeWeight: 1104,
+      pipeHeight: 125,
+    },
+    {
+      id: "002",
+      pipeOrder: "002",
+      pipeWeight: 1504,
+      pipeHeight: 125,
+    },
+    {
+      id: "003",
+      pipeOrder: "003",
+      pipeWeight: 15404,
+      pipeHeight: 251,
+    },
+  ],
+};
+
+const pipeTally2 = {
+  profileNumber: "03",
+  pipes: [
+    {
+      id: "001",
+      pipeOrder: "001",
+      pipeWeight: 1104,
+      pipeHeight: 125,
+    },
+    {
+      id: "002",
+      pipeOrder: "002",
+      pipeWeight: 1504,
+      pipeHeight: 125,
+    },
+    {
+      id: "003",
+      pipeOrder: "003",
+      pipeWeight: 15404,
+      pipeHeight: 251,
+    },
+  ],
+};
+
+const pipeTally3 = {
+  profileNumber: "04",
+  pipes: [
+    {
+      id: "001",
+      pipeOrder: "001",
+      pipeWeight: 1104,
+      pipeHeight: 125,
+    },
+    {
+      id: "002",
+      pipeOrder: "002",
+      pipeWeight: 1504,
+      pipeHeight: 125,
+    },
+    {
+      id: "003",
+      pipeOrder: "003",
+      pipeWeight: 15404,
+      pipeHeight: 251,
+    },
+  ],
+};
+
+// Mock Data ends
 
 export const RTMWellExecution: React.FC = () => {
   const classes = useStyles();
@@ -134,6 +211,11 @@ export const RTMWellExecution: React.FC = () => {
         {/* <Grid item container sm={3} className={classes.drillingRigContainer}>
           <DrillingRig className={classes.drillingRig} fontSize='inherit' />
         </Grid> */}
+        <Grid item container sm={9}>
+          <PipeTallyTables pipeTally={pipeTally} profileColor={"limeGreen"} />
+          <PipeTallyTables pipeTally={pipeTally2} profileColor={"orangeRed"} />
+          <PipeTallyTables pipeTally={pipeTally3} profileColor={"yellow"} />
+        </Grid>
       </Grid>
     </div>
   );

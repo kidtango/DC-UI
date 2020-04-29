@@ -22,9 +22,9 @@ function RiskView(): ReactElement {
     setExpanded(newExpanded ? panel : false);
   };
   return (
-    <Grid item container>
+    <Grid item container sm={12}>
       <Grid item container spacing={1}>
-        <Grid item sm={4}>
+        <Grid item sm={5}>
           <CustomizedPanel title={"RISK MATRIX"} panelName={"riskMatrix"}>
             <div>Risk Matrix</div>
           </CustomizedPanel>
