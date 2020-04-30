@@ -1,9 +1,9 @@
-import React from "react";
-import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
-import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import MuiExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import Paper from "@material-ui/core/Paper";
-import { withStyles, Theme, makeStyles } from "@material-ui/core";
+import React from 'react';
+import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
+import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Paper from '@material-ui/core/Paper';
+import { withStyles, Theme, makeStyles } from '@material-ui/core';
 
 export interface CustomizedPanelProps {
   children: React.ReactNode;
@@ -49,24 +49,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   panelTitle: {
     fontSize: 16,
     letterSpacing: -1,
-    lineHeight: "20px",
+    lineHeight: '20px',
     fontWeight: 600,
   },
 }));
 
 const ExpansionPanel = withStyles((theme) => ({
   root: {
-    border: "1px solid rgba(0, 0, 0, .125)",
+    border: '1px solid rgba(0, 0, 0, .125)',
     borderTop: `4px solid #009DD9`,
-    boxShadow: "none",
-    "&:not(:last-child)": {
+    boxShadow: 'none',
+    '&:not(:last-child)': {
       borderBottom: 0,
     },
-    "&:before": {
-      display: "none",
+    '&:before': {
+      display: 'none',
     },
-    "&$expanded": {
-      margin: "auto",
+    '&$expanded': {
+      margin: 'auto',
     },
   },
   expanded: {},
@@ -74,17 +74,17 @@ const ExpansionPanel = withStyles((theme) => ({
 
 const ExpansionPanelSummary = withStyles({
   root: {
-    backgroundColor: "rgba(0, 0, 0, .03)",
-    borderBottom: "1px solid rgba(0, 0, 0, .125)",
+    backgroundColor: 'rgba(0, 0, 0, .03)',
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     minHeight: 56,
-    "&$expanded": {
+    '&$expanded': {
       minHeight: 56,
     },
   },
   content: {
-    "&$expanded": {
-      margin: "12px 0",
+    '&$expanded': {
+      margin: '12px 0',
     },
   },
   expanded: {},
@@ -92,6 +92,10 @@ const ExpansionPanelSummary = withStyles({
 
 const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2),
+    display: 'flex',
+    alignItems: 'center',
+    alignContent: 'center',
+    flexDirection: 'column',
+    // padding: theme.spacing(2),
   },
 }))(MuiExpansionPanelDetails);

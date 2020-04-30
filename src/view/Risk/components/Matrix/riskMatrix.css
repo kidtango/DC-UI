@@ -1,0 +1,173 @@
+.riskMatrix {
+  color: #000;
+  width: 100%;
+  padding: 1rem;
+}
+
+.riskMatrix .riskMatrixChart {
+  /* width: 259px; */
+  width: auto;
+  display: inline-block;
+  position: relative;
+}
+
+.riskMatrix .matrixCell {
+  border-radius: 6px 6px;
+  width: 61px;
+  height: 75px;
+  display: inline-block;
+  margin: 2px;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 4px;
+  color: #000;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.riskMatrix .matrixCell.faded {
+  opacity: 0.5;
+}
+
+.riskMatrix .matrixRow.headerRow {
+  text-align: center;
+  padding: 0 0 0 17px;
+}
+
+.riskMatrix .matrixRow .colTitle {
+  width: 61px;
+  display: inline-block;
+  margin: 4px;
+}
+
+.riskMatrix .matrixRow .rowTitle {
+  padding-top: 27px;
+  display: inline-block;
+  margin: 0 10px 0 0;
+  vertical-align: top;
+}
+
+.riskMatrix .matrixCell.level1 {
+  background-color: #ff3705;
+}
+
+.riskMatrix .matrixCell.level2 {
+  background-color: #f0532c;
+}
+
+.riskMatrix .matrixCell.level3 {
+  background-color: #e26d3f;
+}
+
+.riskMatrix .matrixCell.level4 {
+  background-color: #f8a46b;
+}
+
+.riskMatrix .matrixCell.level5 {
+  background-color: #ebe728;
+}
+
+.riskMatrix .matrixCell.level6 {
+  background-color: #fffc53;
+}
+
+.riskMatrix .matrixCell.level7 {
+  background-color: #edf76d;
+}
+
+.riskMatrix .matrixCell.level8 {
+  background-color: #e2ff5f;
+}
+
+.riskMatrix .matrixCell.level9 {
+  background-color: #b5fc7b;
+}
+
+.riskMatrix .matrixCell.level10 {
+  background-color: #52ed82;
+}
+
+.riskMatrix .matrixCell .lowPresicion {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  margin-left: -25%;
+  font-size: 18px;
+  color: #fff;
+  background: #f00;
+  z-index: 999;
+  border-radius: 25px;
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.riskMatrix .matrixCell .ocurrences {
+  font-size: 27px;
+  display: block;
+  font-weight: bold;
+}
+
+.riskMatrix .matrixCell .certainty {
+  font-size: 16px;
+  font-weight: normal;
+  display: inline-block;
+}
+
+.riskMatrix .compoundRiskIndicator {
+  margin: 15px 0 10px;
+  display: inline-block;
+  width: 200px;
+  position: relative;
+  color: #000;
+  margin-left: 22px;
+}
+
+.riskMatrix .compoundRiskIndicator .triangle {
+  width: 5px;
+  height: 5px;
+  border: 5px solid transparent;
+  border-top: 10px solid #000;
+  position: absolute;
+  left: 70%;
+  transition: left ease-out 1s;
+}
+
+.riskMatrix .compoundRiskIndicator .bar {
+  background: linear-gradient(to left, #52ed82, #fcc984, #f87c7c);
+  height: 10px;
+  border-radius: 10px;
+}
+
+.riskMatrix .consequenceTitle {
+  text-align: center;
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 50%;
+  left: -32%;
+  margin-top: -35px;
+  font-size: 20px;
+}
+
+.riskMatrix .consequenceBlock {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.riskMatrix .probabilityTitle .arrowIcon {
+  display: inline-block;
+}
+
+.riskMatrix .consequenceBlock .consquenceTitle {
+  display: inline-block;
+  margin-left: 3px;
+}
