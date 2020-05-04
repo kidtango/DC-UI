@@ -1,11 +1,10 @@
 .riskMatrix {
-  color: #000;
+  /* color: #000; */
   width: 100%;
   padding: 1rem;
 }
 
 .riskMatrix .riskMatrixChart {
-  /* width: 259px; */
   width: auto;
   display: inline-block;
   position: relative;
@@ -97,15 +96,15 @@
 
 .riskMatrix .matrixCell .lowPresicion {
   position: absolute;
-  top: -5px;
+  top: -8px;
   right: -10px;
   margin-left: -25%;
   font-size: 18px;
   color: #fff;
   background: #f00;
   z-index: 999;
-  border-radius: 25px;
-  padding: 0 5px;
+  border-radius: 5px;
+  padding: 0 8px;
   font-weight: bold;
 }
 

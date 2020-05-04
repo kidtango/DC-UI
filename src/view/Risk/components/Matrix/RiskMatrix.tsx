@@ -55,11 +55,6 @@ const RiskMatrix = (props: RiskMatrixProps) => {
     return (
       <div
         key={mappedBucketKey}
-        // className={clsx(
-        //   rbClasses[mappedBucketKey] ? rbClasses[mappedBucketKey] : '',
-        //   classes.matrixCell,
-        //   classes[bucketColor]
-        // )}
         className={`${
           rbClasses[mappedBucketKey] || ''
         } matrixCell ${bucketColor}`}

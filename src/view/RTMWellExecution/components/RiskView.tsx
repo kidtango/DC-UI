@@ -1,10 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { withStyles, Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
-import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
+
 import { makeStyles } from '@material-ui/styles';
 import { CustomizedPanel } from 'components/CustomizedPanel';
 import mapMatrix, { RiskMatrix } from 'view/Risk/components/Matrix';
@@ -12,6 +9,7 @@ import mapMatrix, { RiskMatrix } from 'view/Risk/components/Matrix';
 import data from 'view/Risk/sampleResData/mvp31-sampleRes.json';
 import { getRiskProfileAdapter, configureRiskBuckets } from 'view/Risk/utils';
 import matrixConfig from 'view/Risk/components/Matrix/matrixConfig';
+import { RiskStreamList } from 'view/Risk/components/RiskStreamList';
 
 export interface RiskViewProps {}
 
@@ -19,7 +17,7 @@ function RiskView(): ReactElement {
   const classes = useStyles();
 
   const [expanded, setExpanded] = useState<string | false>('panel1');
-  const [mappedMatrix, setMappedMatrix] = useState<{ [key: string]: string }>();
+  const [mappedMatrix, setMappedMatrix] = useState<{ [key: string]: {} }>();
   console.log('functionRiskView -> mappedMatrix', mappedMatrix);
 
   useEffect(() => {
@@ -27,13 +25,14 @@ function RiskView(): ReactElement {
     if (data && data.classifyRisk) {
       const adaptedMVP = getRiskProfileAdapter(data.classifyRisk);
       const calculatedRiskBuckets = configureRiskBuckets(adaptedMVP);
+
       const mappedMatrix = mapMatrix(
         calculatedRiskBuckets,
         matrixConfig.matrix6x6.matMapColors
       );
       setMappedMatrix(mappedMatrix);
     }
-  }, [data.classifyRisk]);
+  }, [data]);
 
   const handleChange = (panel: string) => (
     event: React.ChangeEvent<{}>,
@@ -53,23 +52,20 @@ function RiskView(): ReactElement {
         </Grid>
         <Grid item sm={4}>
           <CustomizedPanel
-            title={'CONSEQUENCE PROFILE'}
+            title={'RISK STREAM'}
             panelName={'consequenceProfile'}>
-            <div>Consequence</div>
-          </CustomizedPanel>
-          <CustomizedPanel
-            title={'LIKELIHOOD PROFILE'}
-            panelName={'likelihoodProfile'}>
-            <div>LikelilHood Profile</div>
+            <div>
+              <RiskStreamList />
+            </div>
           </CustomizedPanel>
         </Grid>
-        <Grid item sm={3}>
+        {/* <Grid item sm={3}>
           <CustomizedPanel
             title={'RISK STREAM'}
             panelName={'consequenceProfile'}>
             <div>LikelilHood Profile</div>
           </CustomizedPanel>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Grid>
   );

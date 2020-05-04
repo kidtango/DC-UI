@@ -1,5 +1,20 @@
 import _ from 'lodash';
 
+// export interface RiskProfile {
+//   compoundRisk: number;
+//   riskBuckets: {
+//     id: string;
+//     severity: string;
+//     likelihood: string;
+//     numberOfRisks: number;
+//     numberOfLowConfidenceRisks: number;
+//     averageConfidenceLevel: number;
+//     filteredNumberOfRisks: number;
+//     filteredNumberOfLowConfidenceRisks: number;
+//     risks: {}[];
+//   }[];
+// }
+
 const ConfigureRiskBuckets = (riskProfile: any) => {
   let matrix6x6: { [key: number]: string } = new Array(6);
 
