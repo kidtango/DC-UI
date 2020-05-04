@@ -11,6 +11,181 @@ import { getRiskProfileAdapter, configureRiskBuckets } from 'view/Risk/utils';
 import matrixConfig from 'view/Risk/components/Matrix/matrixConfig';
 import { RiskStreamList } from 'view/Risk/components/RiskStreamList';
 
+// mock data
+const selectedRiskBucket = [
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description:
+      'Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks Godzilla attacks Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+  {
+    cause: 'cause',
+    color: 'level6',
+    confidenceLevel: 1,
+    consequence: 'consequence',
+    description: 'Godzilla attacks',
+    lowConfidence: false,
+    severity: 3,
+    likelihood: 1,
+    risk: {
+      id: '1',
+      cause: 'Death of many people',
+      consequence: 'Death of many people',
+      description: 'Godzilla attacks',
+      title: 'Godzilla!',
+    },
+  },
+];
+
 export interface RiskViewProps {}
 
 function RiskView(): ReactElement {
@@ -55,7 +230,7 @@ function RiskView(): ReactElement {
             title={'RISK STREAM'}
             panelName={'consequenceProfile'}>
             <div>
-              <RiskStreamList />
+              <RiskStreamList selectedRiskBucket={selectedRiskBucket} />
             </div>
           </CustomizedPanel>
         </Grid>

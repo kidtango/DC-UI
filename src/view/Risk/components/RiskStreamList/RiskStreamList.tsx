@@ -23,7 +23,7 @@ import './riskStreamList.css';
 import { makeStyles } from '@material-ui/core';
 import './riskStreamList.css';
 
-interface RiskStreamListProps {
+export interface RiskStreamListProps {
   selectedRiskBucket?: {
     cause: string;
     color: string;
@@ -49,7 +49,7 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
   const { selectedRiskBucket } = props;
   console.log('selectedRiskBucket', selectedRiskBucket);
   // GLobal state from RiskContext
-  const [order, setOrder] = useState<'asc' | 'dsc'>();
+  const [order, setOrder] = useState<'asc' | 'dsc'>('asc');
 
   //Local contexts/state
   const [filterExpanded] = useState(false);
@@ -95,9 +95,6 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
 
   const id = 'simple-popper';
 
-  // console.log('RiskStreamList -> mappedMatrix', mappedMatrix);
-  // console.log('RiskStreamList -> selectedRiskBuckets', selectedRiskBuckets);
-
   // if (!selectedRiskBuckets && mappedMatrix) {
   //   let currentRisks = [];
 
@@ -113,95 +110,43 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
 
   return (
     <div className='riskStreamList'>
-      <Paper className={'risksListContainer'}>
-        <Paper className={'coloredPaper headerPaper'}>
-          <div className='titleContainer'>
-            <div className='statistics'>
-              <div className='stat total'>
-                {/* (
+      <div className='risksListContainer'>
+        {/* Header Section */}
+        <div className={classes.header}>
+          <Paper elevation={1} className={'coloredPaper headerPaper'}>
+            <div className='titleContainer'>
+              <div className='statistics'>
+                <div className='stat total'>
+                  {/* (
                 {stats.level6 +
                   stats.level7 +
                   stats.level8 +
                   stats.level9 +
                   stats.level10}
                 ) */}
-                120
+                  120
+                </div>
+                <div className='stat level10'>12</div>
+                <div className='stat level9'>25</div>
+                <div className='stat level8'>5</div>
+                <div className='stat level7'>80</div>
+                <div className='stat level6'>2</div>
+                <div className='stat lowConfidence'>56</div>
               </div>
-              <div className='stat level10'>12</div>
-              <div className='stat level9'>25</div>
-              <div className='stat level8'>5</div>
-              <div className='stat level7'>80</div>
-              <div className='stat level6'>2</div>
-              <div className='stat lowConfidence'>56</div>
             </div>
-          </div>
-          <div className='filters'>
-            <div className='sortAndOrder'>
-              <Button size='small' className='orderByButton'></Button>
-              <Button size='small' className={`ascDescButton ${order}`}>
-                <UpwardIcon className='upArrow' />
-                <DownwardIcon className='downArrow' />
-              </Button>
+            <div className='filters'>
+              <div className='sortAndOrder'>
+                <Button size='small' className='orderByButton'></Button>
+                <Button size='small' className={`ascDescButton ${order}`}>
+                  <UpwardIcon className='upArrow' />
+                  <DownwardIcon className='downArrow' />
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className='clear'></div>
-          <Collapse in={true} collapsedHeight='0px'>
-            <Paper className='filterControls'>
-              <form className={classes.root} autoComplete='off'>
-                <Grid container>
-                  {/* <Grid item xs={6}>
-                    <FormControl className={classes.formControl}>
-                      <InputLabel htmlFor='age-simple'>Sorty by</InputLabel>
-                      <Select
-                        value={'5'}
-                        inputProps={{
-                          name: 'age',
-                          id: 'age-simple'
-                        }}
-                      >
-                        <MenuItem value=''>
-                          <em>Risk</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Severity</MenuItem>
-                        <MenuItem value={20}>Probability</MenuItem>
-                        <MenuItem value={30}>Confidence</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid> */}
-                  <Grid item xs={6}>
-                    {/* <FormControl className={classes.formControl} xs={6}>
-                      <FormLabel component='legend'>Order</FormLabel>
+          </Paper>
+        </div>
 
-                      <RadioGroup
-                        aria-label='Order'
-                        name='order'
-                        className={'radioGroup'}
-                        value={`${order}`}
-                        onClick={() => toggleOrder()}>
-                        <Grid container>
-                          <Grid item xs={6}>
-                            <FormControlLabel
-                              value='asc'
-                              control={<Radio />}
-                              label='Asc'
-                            />
-                          </Grid>
-                          <Grid item xs={6}>
-                            <FormControlLabel
-                              value='desc'
-                              control={<Radio />}
-                              label='Desc'
-                            />
-                          </Grid>
-                        </Grid>
-                      </RadioGroup>
-                    </FormControl> */}
-                  </Grid>
-                </Grid>
-              </form>
-            </Paper>
-          </Collapse>
-        </Paper>
+        {/* Content section */}
         <div
           className='streamList scrollableFullHeighPaper'
           ref={scrollContainerRef}>
@@ -284,7 +229,7 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
               );
             })}
         </div>
-      </Paper>
+      </div>
     </div>
   );
 };
@@ -292,7 +237,46 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
 export default RiskStreamList;
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  matrixScores: {},
-  matrixCol: {},
+  root: {
+    display: 'flex',
+  },
+  header: {
+    marginBottom: 4,
+  },
+
+  chip: {
+    margin: theme.spacing(1),
+  },
+
+  matrixScores: {
+    display: 'block',
+    float: 'right',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginLeft: '3px',
+    marginRight: '3px',
+  },
+  level6: {
+    backgroundColor: '#FFFC53',
+  },
+  level7: {
+    backgroundColor: '#EDF76D',
+  },
+  level8: {
+    backgroundColor: '#E2FF5F',
+  },
+  level9: {
+    backgroundColor: '#B5FC7B',
+  },
+  level10: {
+    backgroundColor: '#52ED82',
+  },
+  lowConfidence: {
+    backgroundColor: '#F00',
+    color: 'white',
+  },
+  matrixCol: {
+    marginRight: '3px',
+    display: 'inline-block',
+  },
 }));
