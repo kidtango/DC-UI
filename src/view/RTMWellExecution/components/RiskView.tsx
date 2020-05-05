@@ -15,11 +15,11 @@ import { RiskStreamList } from 'view/Risk/components/RiskStreamList';
 const selectedRiskBucket = [
   {
     cause: 'cause',
-    color: 'level6',
+    color: 'level10',
     confidenceLevel: 1,
     consequence: 'consequence',
     description:
-      'Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks',
+      'Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks',
     lowConfidence: false,
     severity: 3,
     likelihood: 1,
@@ -27,16 +27,18 @@ const selectedRiskBucket = [
       id: '1',
       cause: 'Death of many people',
       consequence: 'Death of many people',
-      description: 'Godzilla attacks Godzilla attacks Godzilla attacks',
+      description:
+        'Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks',
       title: 'Godzilla!',
     },
   },
   {
     cause: 'cause',
-    color: 'level6',
+    color: 'level9',
     confidenceLevel: 1,
     consequence: 'consequence',
-    description: 'Godzilla attacks',
+    description:
+      'Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks',
     lowConfidence: false,
     severity: 3,
     likelihood: 1,
@@ -44,13 +46,14 @@ const selectedRiskBucket = [
       id: '1',
       cause: 'Death of many people',
       consequence: 'Death of many people',
-      description: 'Godzilla attacks',
+      description:
+        'Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks Godzilla attacks',
       title: 'Godzilla!',
     },
   },
   {
     cause: 'cause',
-    color: 'level6',
+    color: 'level8',
     confidenceLevel: 1,
     consequence: 'consequence',
     description: 'Godzilla attacks',

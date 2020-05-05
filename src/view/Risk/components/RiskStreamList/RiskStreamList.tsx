@@ -22,6 +22,15 @@ import Chip from '@material-ui/core/Chip';
 import './riskStreamList.css';
 import { makeStyles } from '@material-ui/core';
 import './riskStreamList.css';
+import clsx from 'clsx';
+
+type Color =
+  | 'level6'
+  | 'level7'
+  | 'level8'
+  | 'level9'
+  | 'level10'
+  | 'lowConfidence';
 
 export interface RiskStreamListProps {
   selectedRiskBucket?: {
@@ -47,7 +56,6 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
   props: RiskStreamListProps
 ) => {
   const { selectedRiskBucket } = props;
-  console.log('selectedRiskBucket', selectedRiskBucket);
   // GLobal state from RiskContext
   const [order, setOrder] = useState<'asc' | 'dsc'>('asc');
 
@@ -56,10 +64,14 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
   const [riskTitles, setRiskTitles] = useState([]);
   const [riskConsequences, setRiskConsequences] = useState([]);
   const [riskCauses, setRiskCauses] = useState([]);
-  const [riskDescriptions, setRiskDescriptions] = useState([]);
+  const [riskDescriptions, setRiskDescriptions] = useState<
+    {
+      [key: number]: boolean;
+    }[]
+  >([]);
 
   // Global state
-  const classes = useStyles();
+  const classes: any = useStyles();
 
   useEffect(() => {
     window.addEventListener('scroll', forceCheck);
@@ -80,13 +92,21 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
   // };
 
   const toggleExpandRiskDetail = (
-    riskDetailName: any,
+    riskDetailNames: {
+      [key: number]: boolean;
+    }[],
     idx: number,
-    setRiskDetailName: any
+    setRiskDetailName: React.Dispatch<
+      React.SetStateAction<
+        {
+          [key: number]: boolean;
+        }[]
+      >
+    >
   ) => {
-    const riskDetailItem = [];
-    riskDetailItem[idx] = !riskDetailName[idx];
-    setRiskDetailName(riskDetailItem);
+    const riskDetailItems: any = [];
+    riskDetailItems[idx] = !riskDetailNames[idx];
+    setRiskDetailName(riskDetailItems);
   };
 
   const scrollContainerRef = useRef<any>(null);
@@ -166,60 +186,55 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
                   key={idx}
                   unmountIfInvisible={true}>
                   <Grid container>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={classes.riskDetail}>
                       <Paper
                         className={`${risk.color} coloredPaper ${
                           risk.lowConfidence ? 'lowConfidence' : ''
                         }`}>
-                        <div className='description'>
+                        <div
+                          className='description'
+                          onClick={() =>
+                            toggleExpandRiskDetail(
+                              riskDescriptions,
+                              idx,
+                              setRiskDescriptions
+                            )
+                          }>
                           <div
                             aria-describedby={id}
                             className={classes.matrixScores}>
                             <div className={classes.matrixCol}>
-                              <b>{risk.likelihood}</b>
+                              {risk.likelihood}
                             </div>
-                            <Chip
-                              // icon={<FaceIcon />}
-                              label={`${Math.trunc(
-                                risk.confidenceLevel * 100
-                              )}%`}
-                              // className={
-                              //   classes[
-                              //     `${
-                              //       risk.lowConfidence
-                              //         ? 'lowConfidence'
-                              //         : risk.color
-                              //     }`
-                              //   ]
-                              // }
-                            />
-                            <div>
-                              <b>{risk.severity}</b>
+                            <Button
+                              variant='contained'
+                              className={clsx(
+                                classes[
+                                  `${
+                                    risk.lowConfidence
+                                      ? 'lowConfidence'
+                                      : risk.color
+                                  }`
+                                ],
+                                classes.miniMatrix
+                              )}>
+                              {`${Math.trunc(risk.confidenceLevel * 100)}%`}
+                            </Button>
+                            <div className={classes.matrixRow}>
+                              {risk.severity}
                             </div>
                           </div>
-                          <Collapse collapsedHeight='62px' className='title'>
-                            {/* <Highlighter
-                              input={prepareText(r.title)}
-                              keywords={wordsToHighlight.title}
-                            /> */}
-                            {/* <Chip
-                              label={`${Math.trunc(
-                                r.confidenceLevel * 100
-                              )}% confidence`}
-                              clickable
-                              color={r.lowConfidence ? 'secondary' : 'primary'}
-                              variant='outlined'
-                            /> */}
-                          </Collapse>
                           <Collapse
-                            collapsedHeight='36px'
+                            collapsedHeight='62px'
+                            className='title'></Collapse>
+
+                          <Collapse
+                            component={'div'}
+                            in={!!riskDescriptions[idx]}
+                            timeout='auto'
+                            collapsedHeight='62px'
                             className='riskWordsMatched'>
-                            <b>Description:</b>{' '}
-                            {/* <Highlighter
-                              input={prepareText(r.description)}
-                              keywords={wordsToHighlight.description}
-                            /> */}
-                            {risk.description}
+                            <b>Description:</b> {risk.description}
                           </Collapse>
                         </div>
                       </Paper>
@@ -243,11 +258,19 @@ const useStyles = makeStyles((theme) => ({
   header: {
     marginBottom: 4,
   },
+  riskDetail: { cursor: 'pointer' },
 
-  chip: {
-    margin: theme.spacing(1),
+  miniMatrix: {
+    borderRadius: '6px',
+    width: '20px',
+    height: '60px',
   },
-
+  matrixRow: { fontSize: '12px', marginLeft: '6px' },
+  matrixCol: {
+    marginRight: '3px',
+    display: 'inline-block',
+    fontSize: '12px',
+  },
   matrixScores: {
     display: 'block',
     float: 'right',
@@ -274,9 +297,5 @@ const useStyles = makeStyles((theme) => ({
   lowConfidence: {
     backgroundColor: '#F00',
     color: 'white',
-  },
-  matrixCol: {
-    marginRight: '3px',
-    display: 'inline-block',
   },
 }));
