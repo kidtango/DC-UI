@@ -24,14 +24,6 @@ import { makeStyles } from '@material-ui/core';
 import './riskStreamList.css';
 import clsx from 'clsx';
 
-type Color =
-  | 'level6'
-  | 'level7'
-  | 'level8'
-  | 'level9'
-  | 'level10'
-  | 'lowConfidence';
-
 export interface RiskStreamListProps {
   selectedRiskBucket?: {
     cause: string;
@@ -60,10 +52,6 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
   const [order, setOrder] = useState<'asc' | 'dsc'>('asc');
 
   //Local contexts/state
-  const [filterExpanded] = useState(false);
-  const [riskTitles, setRiskTitles] = useState([]);
-  const [riskConsequences, setRiskConsequences] = useState([]);
-  const [riskCauses, setRiskCauses] = useState([]);
   const [riskDescriptions, setRiskDescriptions] = useState<
     {
       [key: number]: boolean;
@@ -206,8 +194,7 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
                             <div className={classes.matrixCol}>
                               {risk.likelihood}
                             </div>
-                            <Button
-                              variant='contained'
+                            <div
                               className={clsx(
                                 classes[
                                   `${
@@ -218,8 +205,10 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
                                 ],
                                 classes.miniMatrix
                               )}>
-                              {`${Math.trunc(risk.confidenceLevel * 100)}%`}
-                            </Button>
+                              <div className={classes.matrixContent}>
+                                {`${Math.trunc(risk.confidenceLevel * 100)}%`}
+                              </div>
+                            </div>
                             <div className={classes.matrixRow}>
                               {risk.severity}
                             </div>
@@ -261,10 +250,18 @@ const useStyles = makeStyles((theme) => ({
   riskDetail: { cursor: 'pointer' },
 
   miniMatrix: {
+    position: 'relative',
+    display: 'inline-block',
     borderRadius: '6px',
-    width: '20px',
-    height: '60px',
+    width: '45px',
+    height: '50px',
+    fontWeight: 'bold',
+    fontSize: '15px',
+    padding: '2px',
+    verticalAlign: 'middle',
+    textAlign: 'center',
   },
+  matrixContent: { marginTop: '30%' },
   matrixRow: { fontSize: '12px', marginLeft: '6px' },
   matrixCol: {
     marginRight: '3px',
