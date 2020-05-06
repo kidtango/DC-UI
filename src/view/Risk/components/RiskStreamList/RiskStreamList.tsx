@@ -3,22 +3,11 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Collapse from '@material-ui/core/Collapse';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
-// import Radio from '@material-ui/core/Radio';
-// import RadioGroup from '@material-ui/core/RadioGroup';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormLabel from '@material-ui/core/FormLabel';
 import _ from 'lodash';
 import UpwardIcon from '@material-ui/icons/ArrowUpward';
 import DownwardIcon from '@material-ui/icons/ArrowDownward';
 import LazyLoad from 'react-lazyload';
 import { forceCheck } from 'react-lazyload';
-import Chip from '@material-ui/core/Chip';
-
 import './riskStreamList.css';
 import { makeStyles } from '@material-ui/core';
 import './riskStreamList.css';
@@ -121,7 +110,7 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
       <div className='risksListContainer'>
         {/* Header Section */}
         <div className={classes.header}>
-          <Paper elevation={1} className={'coloredPaper headerPaper'}>
+          <Paper elevation={2} className={'coloredPaper headerPaper'}>
             <div className='titleContainer'>
               <div className='statistics'>
                 <div className='stat total'>
@@ -176,6 +165,7 @@ const RiskStreamList: React.FC<RiskStreamListProps> = (
                   <Grid container>
                     <Grid item xs={12} className={classes.riskDetail}>
                       <Paper
+                        elevation={2}
                         className={`${risk.color} coloredPaper ${
                           risk.lowConfidence ? 'lowConfidence' : ''
                         }`}>
@@ -248,7 +238,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 4,
   },
   riskDetail: { cursor: 'pointer' },
-
   miniMatrix: {
     position: 'relative',
     display: 'inline-block',
@@ -275,6 +264,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     marginLeft: '3px',
     marginRight: '3px',
+  },
+  coloredPaper: {
+    borderLeft: 'red 8px solid',
   },
   level6: {
     backgroundColor: '#FFFC53',

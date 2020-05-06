@@ -46,7 +46,7 @@ export const Sidebar: React.FC<Props> = (props: Props) => {
     },
     {
       title: 'Risk View',
-      href: '/riskView',
+      href: '/RiskView',
       icon: <RiskIcon fontSize='large' />,
       color: theme.palette.icon.risk,
     },

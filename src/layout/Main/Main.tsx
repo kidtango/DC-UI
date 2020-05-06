@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/styles";
-import { useMediaQuery, Theme, Container } from "@material-ui/core";
+import React, { useState } from 'react';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { useMediaQuery, Theme, Container } from '@material-ui/core';
 
-import { Classes } from "@material-ui/styles/mergeClasses/mergeClasses";
-import { Sidebar } from "./components";
+import { Classes } from '@material-ui/styles/mergeClasses/mergeClasses';
+import { Sidebar } from './components';
 
 interface Props {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export const Main: React.FC<Props> = (props: Props) => {
   const classes: Classes = useStyles();
   const theme: Theme = useTheme();
 
-  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"), {
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
     defaultMatches: true,
   });
 
@@ -33,10 +33,7 @@ export const Main: React.FC<Props> = (props: Props) => {
 
   return (
     <div className={classes.root}>
-      <Sidebar
-        variant={isDesktop ? "persistent" : "temporary"}
-        open={shouldOpenSidebar}
-      />
+      <Sidebar open={shouldOpenSidebar} />
 
       <main className={classes.content}>
         <Container className={classes.container}>
@@ -53,20 +50,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     // [theme.breakpoints.up('sm')]: {
     //   paddingTop: 64,
     // },
-    display: "flex",
-    flexDirection: "row",
-    margin: "2rem auto",
-    boxShadow: "0 2rem 6rem rgba(0, 0, 0, 0.3);",
-    minHeight: "50rem",
-    maxWidth: "98%",
-    borderRadius: "0.5rem",
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '2rem auto',
+    boxShadow: '0 2rem 6rem rgba(0, 0, 0, 0.3);',
+    minHeight: '50rem',
+    maxWidth: '98%',
+    borderRadius: '0.5rem',
     backgroundColor: theme.palette.primary.light,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
 
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.primary.light,
   },
-  container: { marginTop: theme.spacing(2), maxWidth: "99%" },
+  container: { marginTop: theme.spacing(2), maxWidth: '99%' },
 }));

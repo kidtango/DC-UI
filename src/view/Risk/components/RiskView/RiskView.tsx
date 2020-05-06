@@ -8,8 +8,8 @@ import mapMatrix, { RiskMatrix } from 'view/Risk/components/Matrix';
 
 import data from 'view/Risk/sampleResData/mvp31-sampleRes.json';
 import { getRiskProfileAdapter, configureRiskBuckets } from 'view/Risk/utils';
-import matrixConfig from 'view/Risk/components/Matrix/matrixConfig';
-import { RiskStreamList } from 'view/Risk/components/RiskStreamList';
+import matrixConfig from '../Matrix/matrixConfig';
+import { RiskStreamList } from '../RiskStreamList';
 
 // mock data
 const selectedRiskBucket = [
@@ -219,16 +219,16 @@ function RiskView(): ReactElement {
     setExpanded(newExpanded ? panel : false);
   };
   return (
-    <Grid item container sm={12}>
+    <Grid item container>
       <Grid item container spacing={1}>
-        <Grid item sm={5} alignItems='center' alignContent='center'>
+        <Grid item sm={6} alignItems='center' alignContent='center'>
           <CustomizedPanel title={'RISK MATRIX'} panelName={'riskMatrix'}>
             <div className={classes.riskMatrix}>
               <RiskMatrix mappedMatrix={mappedMatrix} />
             </div>
           </CustomizedPanel>
         </Grid>
-        <Grid item sm={4}>
+        <Grid item sm={6}>
           <CustomizedPanel
             title={'RISK STREAM'}
             panelName={'consequenceProfile'}>
@@ -237,13 +237,6 @@ function RiskView(): ReactElement {
             </div>
           </CustomizedPanel>
         </Grid>
-        {/* <Grid item sm={3}>
-          <CustomizedPanel
-            title={'RISK STREAM'}
-            panelName={'consequenceProfile'}>
-            <div>LikelilHood Profile</div>
-          </CustomizedPanel>
-        </Grid> */}
       </Grid>
     </Grid>
   );
@@ -261,45 +254,3 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   riskMatrix: {},
 }));
-
-// const ExpansionPanel = withStyles((theme) => ({
-//   root: {
-//     border: '1px solid rgba(0, 0, 0, .125)',
-//     borderTop: `4px solid #009DD9`,
-//     boxShadow: 'none',
-//     '&:not(:last-child)': {
-//       borderBottom: 0,
-//     },
-//     '&:before': {
-//       display: 'none',
-//     },
-//     '&$expanded': {
-//       margin: 'auto',
-//     },
-//   },
-//   expanded: {},
-// }))(MuiExpansionPanel);
-
-// const ExpansionPanelSummary = withStyles({
-//   root: {
-//     backgroundColor: 'rgba(0, 0, 0, .03)',
-//     borderBottom: '1px solid rgba(0, 0, 0, .125)',
-//     marginBottom: -1,
-//     minHeight: 56,
-//     '&$expanded': {
-//       minHeight: 56,
-//     },
-//   },
-//   content: {
-//     '&$expanded': {
-//       margin: '12px 0',
-//     },
-//   },
-//   expanded: {},
-// })(MuiExpansionPanelSummary);
-
-// const ExpansionPanelDetails = withStyles((theme) => ({
-//   root: {
-//     padding: theme.spacing(2),
-//   },
-// }))(MuiExpansionPanelDetails);

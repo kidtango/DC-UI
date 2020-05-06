@@ -83,18 +83,17 @@ const PipeTallyInputForm: React.FC = () => {
   ) => (formState.touched[field] && formState.errors[field] ? true : false);
 
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <FormControl
         className={clsx(classes.margin, classes.textField)}
-        variant='outlined'
-      >
+        variant='outlined'>
         <InputLabel
           htmlFor='outlined-adornment-depth'
           margin='dense'
           error={hasError('depth')}
-          required={true}
-        >
+          required={true}>
           enter depth in ft
         </InputLabel>
         <OutlinedInput
@@ -111,14 +110,12 @@ const PipeTallyInputForm: React.FC = () => {
       </FormControl>
       <FormControl
         className={clsx(classes.margin, classes.textField)}
-        variant='outlined'
-      >
+        variant='outlined'>
         <InputLabel
           htmlFor='outlined-adornment-pressure'
           margin='dense'
           required={true}
-          error={hasError('pressure')}
-        >
+          error={hasError('pressure')}>
           enter pressure in paia
         </InputLabel>
         <OutlinedInput
@@ -134,14 +131,12 @@ const PipeTallyInputForm: React.FC = () => {
       </FormControl>
       <FormControl
         className={clsx(classes.margin, classes.descriptionTextField)}
-        variant='outlined'
-      >
+        variant='outlined'>
         <InputLabel
           htmlFor='outlined-adornment-event'
           margin='dense'
           required={true}
-          error={hasError('event')}
-        >
+          error={hasError('event')}>
           describe event
         </InputLabel>
         <OutlinedInput
@@ -162,16 +157,14 @@ const PipeTallyInputForm: React.FC = () => {
           className={classes.submit}
           classes={{ root: classes.buttonRoot }}
           disabled={!formState.isValid}
-          type='submit'
-        >
+          type='submit'>
           submit
         </Button>
         <Button
           variant='contained'
           color='secondary'
           className={classes.clear}
-          classes={{ root: classes.buttonRoot }}
-        >
+          classes={{ root: classes.buttonRoot }}>
           clear
         </Button>
       </div>
@@ -191,7 +184,6 @@ const useStyles = makeStyles((theme: Theme) =>
     margin: {
       marginRight: theme.spacing(1),
     },
-
     textField: {
       width: '18%',
     },

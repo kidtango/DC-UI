@@ -5,7 +5,7 @@ import { Router } from 'react-router-dom';
 
 import theme from './theme';
 import { Routes } from './Routes';
-import './assets/scss/index.css';
+import './assets/css/index.css';
 
 const browserHistory = createBrowserHistory();
 

@@ -4,6 +4,7 @@
   color: #000;
   border-left: 8px solid #888;
   margin: 0 3px 5px;
+  border-radius: 0;
 }
 
 .headerPaper .title {
@@ -63,6 +64,8 @@
   padding: 4px;
   margin: 0 2px 2px;
   border-radius: 0;
+  margin-bottom: 4px;
+  padding: 4px;
 }
 
 .riskStreamList .scrollableFullHeighPaper {
@@ -231,6 +234,7 @@
 .headerPaper {
   border-left-color: #888;
   border-left-width: 4px;
+  border-radius: 0px;
 }
 
 .headerPaper .matrixScore {
@@ -242,6 +246,7 @@
   display: inline-block;
   padding-top: 4px;
   margin-bottom: 20px;
+  border-radius: 0px;
 }
 
 .headerPaper .title {
@@ -280,6 +285,7 @@
 .headerPaper .statistics {
   float: right;
   margin-top: 5px;
+  border-radius: 0px;
 }
 
 .headerPaper .statistics::after {
@@ -334,4 +340,24 @@
   background: #f00;
   border-radius: 30px;
   color: #fff;
+}
+
+.coloredPaper.level10 {
+  border-left: #52ed82 4px solid;
+}
+
+.coloredPaper.level9 {
+  border-left: #b5fc7b 4px solid;
+}
+
+.coloredPaper.level8 {
+  border-left: #e2ff5f 4px solid;
+}
+
+.coloredPaper.level7 {
+  border-left: #edf76d 4px solid;
+}
+
+.coloredPaper.level6 {
+  border-left: #fffc53 4px solid;
 }

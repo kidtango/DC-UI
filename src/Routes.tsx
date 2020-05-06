@@ -18,6 +18,7 @@ export const Routes: React.FC = () => {
         layout={Main}
         path='/WellsSystemSuiteIcon'
       />
+      <RouteWithLayout component={Risk} exact layout={Main} path='/RiskView' />
       <RTMContextProvider>
         <RouteWithLayout
           component={RTMWellExecution}

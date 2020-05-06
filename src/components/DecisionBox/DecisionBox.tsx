@@ -19,13 +19,7 @@ export interface DecisionBoxProps {
 export const DecisionBox: React.FC<DecisionBoxProps> = (
   props: DecisionBoxProps
 ) => {
-  const {
-    content,
-    breadcrumbs,
-    actionButtonTitle,
-    inputForm,
-    showForm,
-  } = props;
+  const { content, actionButtonTitle, inputForm, showForm } = props;
 
   const classes = useStyles();
 
@@ -39,8 +33,7 @@ export const DecisionBox: React.FC<DecisionBoxProps> = (
         <Button
           variant='contained'
           color='primary'
-          className={classes.evalButton}
-        >
+          className={classes.evalButton}>
           {actionButtonTitle}
         </Button>
       )}
