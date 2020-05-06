@@ -3,7 +3,6 @@ import Paper from '@material-ui/core/Paper';
 import {
   makeStyles,
   Theme,
-  useTheme,
   Typography,
   FormControl,
   InputLabel,
@@ -15,6 +14,7 @@ import {
   Chip,
 } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
+import theme from 'theme';
 
 const safeguards = [
   {
@@ -55,12 +55,12 @@ const DecisionDetailPanel = (props: Props) => {
             margin='dense'
             // error={hasError('event')}
             required={true}>
-            enter risk event
+            Describe risk event
           </InputLabel>
           <OutlinedInput
             // error={hasError('event')}
             id='outlined-adornment-event'
-            name='depth'
+            name='riskEvent'
             type={'number'}
             required={true}
             // value={formState.values && formState.values.depth}
@@ -101,18 +101,59 @@ const DecisionDetailPanel = (props: Props) => {
             Clear
           </Button>
         </div>
+
+        {/* Safeguard chips */}
         <div className={classes.safeguardChips}>
-          {[1, 2, 3, 4, 5, 6].map((el) => (
-            <Chip
-              variant='outlined'
-              size='small'
-              // icon={<FaceIcon />}
-              label='safeguard1'
-              onClick={handleClick}
-              onDelete={handleDelete}
-              className={classes.chip}
-            />
-          ))}
+          <Chip size='small' label='Clickable' onClick={handleClick} />
+          <Chip size='small' label='Deletable' onDelete={handleDelete} />
+          <Chip
+            size='small'
+            label='Clickable Deletable'
+            onClick={handleClick}
+            onDelete={handleDelete}
+          />
+          <Chip
+            size='small'
+            label='Custom delete icon'
+            onClick={handleClick}
+            onDelete={handleDelete}
+            deleteIcon={<DoneIcon />}
+          />
+          <Chip
+            size='small'
+            label='Clickable Link'
+            component='a'
+            href='#chip'
+            clickable
+          />
+          <Chip
+            size='small'
+            label='Primary Clickable'
+            clickable
+            color='primary'
+            onDelete={handleDelete}
+            deleteIcon={<DoneIcon />}
+          />
+          <Chip
+            size='small'
+            label='Primary Clickable'
+            clickable
+            color='primary'
+            onDelete={handleDelete}
+            deleteIcon={<DoneIcon />}
+          />
+          <Chip
+            size='small'
+            label='Deletable Primary'
+            onDelete={handleDelete}
+            color='primary'
+          />
+          <Chip
+            size='small'
+            label='Deletable Secondary'
+            onDelete={handleDelete}
+            color='secondary'
+          />
         </div>
       </Paper>
     </Grid>
@@ -125,8 +166,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: { height: 300 },
   paper: {
     width: '100%',
-    // minHeight: 200,
-
     padding: theme.spacing(2),
   },
   body: { marginTop: theme.spacing(1) },
@@ -141,8 +180,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   submit: { marginRight: theme.spacing(1) },
   safeguardChips: {
     marginTop: theme.spacing(2),
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
   },
-  chip: { marginRight: theme.spacing(1) },
+
   buttonRoot: {
     width: 70,
     height: 40,
