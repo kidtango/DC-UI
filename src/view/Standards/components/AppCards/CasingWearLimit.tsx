@@ -19,7 +19,7 @@ const CasingWearLimit: React.FC<CasingWearLimitProps> = (
   const appCardContents: AppCardProps = {
     domainTitle: 'STANDARDS',
     iconColor: theme.palette.icon.standards,
-    appTitle: 'Casing wear limit tool',
+    appTitle: 'Casing wear factor limit',
     cardState: {
       isError,
       isDisabled,

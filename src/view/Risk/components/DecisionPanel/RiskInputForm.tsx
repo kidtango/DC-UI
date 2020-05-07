@@ -11,7 +11,6 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
-import _ from 'lodash';
 import { safeguards } from 'view/Risk/safeguards/safeguards';
 
 // Configuration for safeguards menu
@@ -60,6 +59,7 @@ interface State {
 }
 
 const RiskInputForm: React.FC = () => {
+  const classes = useStyles();
   const [formState, setFormState] = useState<State>({
     values: { event: '', safeguards: [] },
     isValid: false,
@@ -77,7 +77,7 @@ const RiskInputForm: React.FC = () => {
     }));
   }, [formState.values]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | any>) => {
+  const handleChange = (event: React.ChangeEvent<any>) => {
     event.persist();
 
     if (event.target.name === 'safeguards') {
@@ -109,8 +109,6 @@ const RiskInputForm: React.FC = () => {
 
   const hasError = (field: 'event' | 'safeguards') =>
     formState.touched[field] && formState.errors[field] ? true : false;
-
-  const classes = useStyles();
 
   return (
     <>

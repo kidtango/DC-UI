@@ -1,33 +1,32 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core';
+import GridOnIcon from '@material-ui/icons/GridOn';
 import { AppCardProps, AppCard } from 'components/AppCard/AppCard';
-import { NodeConnectIcon } from 'icons/NodeConnectIcon';
 
-export interface CasingPointLocatorToolProps {
+export interface DrillPipeInventoryCheckProps {
   isError: boolean;
   isDisabled: boolean;
   isActive: boolean;
 }
 
-const CasingPointLocatorTool: React.FC<CasingPointLocatorToolProps> = (
-  props: CasingPointLocatorToolProps
+const DrillPipeInventoryCheck: React.FC<DrillPipeInventoryCheckProps> = (
+  props: DrillPipeInventoryCheckProps
 ) => {
-  const { isError, isDisabled, isActive } = props;
-
+  const { isDisabled, isError, isActive } = props;
   const theme = useTheme();
 
   const appCardContents: AppCardProps = {
     domainTitle: 'STANDARDS',
-    appTitle: 'Casing point locator tool',
+    appTitle: 'Drill Pipe Inventory Check',
     iconColor: theme.palette.icon.standards,
     cardState: {
       isDisabled,
       isError,
       isActive,
     },
-    appIcon: <NodeConnectIcon />,
+    appIcon: <GridOnIcon />,
   };
   return <AppCard {...appCardContents} />;
 };
 
-export default CasingPointLocatorTool;
+export default DrillPipeInventoryCheck;

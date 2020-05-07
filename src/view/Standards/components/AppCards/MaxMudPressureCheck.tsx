@@ -1,16 +1,16 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core';
 import { AppCardProps, AppCard } from 'components/AppCard/AppCard';
-import { NodeConnectIcon } from 'icons/NodeConnectIcon';
+import SettingsIcon from '@material-ui/icons/Settings';
 
-export interface CasingPointLocatorToolProps {
+export interface MaxMudPressureCheckProps {
   isError: boolean;
   isDisabled: boolean;
   isActive: boolean;
 }
 
-const CasingPointLocatorTool: React.FC<CasingPointLocatorToolProps> = (
-  props: CasingPointLocatorToolProps
+const MaxMudPressureCheck: React.FC<MaxMudPressureCheckProps> = (
+  props: MaxMudPressureCheckProps
 ) => {
   const { isError, isDisabled, isActive } = props;
 
@@ -18,16 +18,16 @@ const CasingPointLocatorTool: React.FC<CasingPointLocatorToolProps> = (
 
   const appCardContents: AppCardProps = {
     domainTitle: 'STANDARDS',
-    appTitle: 'Casing point locator tool',
+    appTitle: 'Maximum Mud Pressure Check',
     iconColor: theme.palette.icon.standards,
     cardState: {
       isDisabled,
       isError,
       isActive,
     },
-    appIcon: <NodeConnectIcon />,
+    appIcon: <SettingsIcon />,
   };
   return <AppCard {...appCardContents} />;
 };
 
-export default CasingPointLocatorTool;
+export default MaxMudPressureCheck;
