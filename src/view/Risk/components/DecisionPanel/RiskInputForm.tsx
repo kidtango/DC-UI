@@ -27,14 +27,6 @@ const MenuProps = {
 };
 
 const formSchema = {
-  depth: {
-    presence: { allowEmpty: false, message: 'Depth in ft. is required' },
-    type: 'string',
-  },
-  pressure: {
-    presence: { allowEmpty: false, message: 'Pressure in paia is required' },
-    type: 'string',
-  },
   event: {
     presence: {
       allowEmpty: false,
@@ -53,32 +45,26 @@ const formSchema = {
 
 interface State {
   values: {
-    depth: number | null;
-    pressure: number | null;
     event: string;
     safeguards: string[];
   };
   isValid: boolean;
   touched: {
-    depth: boolean;
-    pressure: boolean;
     event: boolean;
     safeguards: boolean;
   };
   errors: {
-    depth: string[];
-    pressure: string[];
     event: string[];
     safeguards: string[];
   };
 }
 
-const PipeTallyInputForm: React.FC = () => {
+const RiskInputForm: React.FC = () => {
   const [formState, setFormState] = useState<State>({
-    values: { depth: null, pressure: null, event: '', safeguards: [] },
+    values: { event: '', safeguards: [] },
     isValid: false,
-    touched: { depth: false, pressure: false, event: false, safeguards: false },
-    errors: { depth: [''], pressure: [''], event: [''], safeguards: [''] },
+    touched: { event: false, safeguards: false },
+    errors: { event: [''], safeguards: [''] },
   });
 
   useEffect(() => {
@@ -121,7 +107,7 @@ const PipeTallyInputForm: React.FC = () => {
     }
   };
 
-  const hasError = (field: 'depth' | 'pressure' | 'event' | 'safeguards') =>
+  const hasError = (field: 'event' | 'safeguards') =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
   const classes = useStyles();
@@ -129,49 +115,6 @@ const PipeTallyInputForm: React.FC = () => {
   return (
     <>
       <div className={classes.root}>
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant='outlined'>
-          <InputLabel
-            htmlFor='outlined-adornment-depth'
-            margin='dense'
-            error={hasError('depth')}
-            required={true}>
-            enter depth in ft
-          </InputLabel>
-          <OutlinedInput
-            error={hasError('depth')}
-            id='outlined-adornment-depth'
-            name='depth'
-            type={'number'}
-            required={true}
-            value={formState.values && formState.values.depth}
-            onChange={handleChange}
-            labelWidth={100}
-            classes={{ root: classes.outlinedInput }}
-          />
-        </FormControl>
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant='outlined'>
-          <InputLabel
-            htmlFor='outlined-adornment-pressure'
-            margin='dense'
-            required={true}
-            error={hasError('pressure')}>
-            enter pressure in paia
-          </InputLabel>
-          <OutlinedInput
-            error={hasError('pressure')}
-            id='outlined-adornment-pressure'
-            name='pressure'
-            type={'number'}
-            value={formState.values && formState.values.pressure}
-            onChange={handleChange}
-            labelWidth={135}
-            classes={{ root: classes.outlinedInput }}
-          />
-        </FormControl>
         <FormControl
           className={clsx(classes.margin, classes.descriptionTextField)}
           variant='outlined'>
@@ -291,4 +234,4 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default PipeTallyInputForm;
+export default RiskInputForm;

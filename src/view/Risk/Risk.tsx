@@ -15,7 +15,7 @@ import {
   RiskSafeguardDefinitionsModels,
 } from './components/AppCards';
 import { RiskView } from './components/RiskView';
-import { DecisionDetailPanel } from './components/DecisionPanel';
+import { DecisionDetailPanel, RiskInputForm } from './components/DecisionPanel';
 
 export const Risk: React.FC = () => {
   const classes = useStyles();
@@ -31,6 +31,7 @@ export const Risk: React.FC = () => {
   const decisionBoxContents: DecisionBoxProps = {
     content: 'Please, provide key data in details panel ->',
     showForm: true,
+    inputForm: <RiskInputForm />,
   };
 
   return (
@@ -98,7 +99,7 @@ export const Risk: React.FC = () => {
 
         {/* Decision Detail Panel */}
         <Grid item container sm={3} className={classes.decisionPanel}>
-          <DecisionDetailPanel />
+          {/* <DecisionDetailPanel /> */}
         </Grid>
       </Grid>
     </div>

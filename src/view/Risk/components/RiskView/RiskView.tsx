@@ -196,10 +196,8 @@ function RiskView(): ReactElement {
 
   const [expanded, setExpanded] = useState<string | false>('panel1');
   const [mappedMatrix, setMappedMatrix] = useState<{ [key: string]: {} }>();
-  console.log('functionRiskView -> mappedMatrix', mappedMatrix);
 
   useEffect(() => {
-    console.log('useEffect - RiskProfile');
     if (data && data.classifyRisk) {
       const adaptedMVP = getRiskProfileAdapter(data.classifyRisk);
       const calculatedRiskBuckets = configureRiskBuckets(adaptedMVP);
