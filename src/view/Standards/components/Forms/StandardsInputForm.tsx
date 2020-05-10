@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import Switch from '@material-ui/core/Switch';
 import clsx from 'clsx';
+import { stat } from 'fs';
 
 const formSchema = {
   mudWeight: {
@@ -37,11 +38,12 @@ const StandardsInputForm = (props: Props) => {
   // formState.touched[field] && formState.errors[field] ? true : false;
 
   const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
+    densitySwitch: false,
   });
+  console.log('StandardsInputForm -> state', state);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('handleChange -> event', event.target.name);
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
@@ -70,37 +72,40 @@ const StandardsInputForm = (props: Props) => {
         />
       </FormControl>
 
-      <FormControl
-        variant='outlined'
-        className={clsx(classes.margin, classes.density)}>
-        <InputLabel htmlFor='outlined-age-native-density' margin='dense'>
-          Density
-        </InputLabel>
-        <Select
-          classes={{ root: classes.outlinedInput }}
-          native
-          // value={state.age}
-          // onChange={handleChange}
-          label='Density'
-          inputProps={{
-            name: 'density',
-            id: 'density-input',
-          }}>
-          <option aria-label='None' value='' />
-          <option value={10}>.00</option>
-          <option value={20}>.10</option>
-          <option value={30}>.22</option>
-          <option value={20}>.50</option>
-          <option value={30}>.75</option>
-        </Select>
-      </FormControl>
+      {state.densitySwitch && (
+        <FormControl
+          variant='outlined'
+          className={clsx(classes.margin, classes.density)}>
+          <InputLabel htmlFor='outlined-age-native-density' margin='dense'>
+            Density
+          </InputLabel>
+          <Select
+            classes={{ root: classes.outlinedInput }}
+            native
+            // value={state.age}
+            // onChange={handleChange}
+            label='Density'
+            inputProps={{
+              name: 'density',
+              id: 'density-input',
+            }}>
+            <option aria-label='None' value='' />
+            <option value={10}>.00</option>
+            <option value={20}>.10</option>
+            <option value={30}>.22</option>
+            <option value={20}>.50</option>
+            <option value={30}>.75</option>
+          </Select>
+        </FormControl>
+      )}
 
       <div className={classes.switchInputGroup}>
         <InputLabel>Hierarchy density default is +.5</InputLabel>
         <div className={classes.switch}>
           <FormControlLabel
-            value='top'
-            control={<Switch color='primary' />}
+            value={state.densitySwitch}
+            name='densitySwitch'
+            control={<Switch color='primary' onChange={handleChange} />}
             label='Customize Density'
             labelPlacement='start'
           />

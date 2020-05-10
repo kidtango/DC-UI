@@ -9,6 +9,7 @@ import RTMWellExecution from 'view/RTMWellExecution';
 import RTMContextProvider from 'view/RTMWellExecution/contexts';
 import Standards from 'view/Standards';
 import RigAllocation from 'view/RigAllocation';
+import { RiskContextsProvider } from 'view/Risk/contexts/RiskContexts';
 
 export const Routes: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ export const Routes: React.FC = () => {
         layout={Main}
         path='/WellsSystemSuiteIcon'
       />
-      <RouteWithLayout component={Risk} exact layout={Main} path='/RiskView' />
+
       <RouteWithLayout
         component={Standards}
         exact
@@ -33,6 +34,9 @@ export const Routes: React.FC = () => {
         layout={Main}
         path='/RigAllocation'
       />
+
+      <RouteWithLayout component={Risk} exact layout={Main} path='/RiskView' />
+
       <RTMContextProvider>
         <RouteWithLayout
           component={RTMWellExecution}

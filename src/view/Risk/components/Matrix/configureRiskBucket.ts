@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { ClassifyRisk, RiskBucket } from 'view/Risk/models/risk';
 
 // export interface RiskProfile {
 //   compoundRisk: number;
@@ -15,8 +16,8 @@ import _ from 'lodash';
 //   }[];
 // }
 
-const ConfigureRiskBuckets = (riskProfile: any) => {
-  let matrix6x6: { [key: number]: string } = new Array(6);
+const ConfigureRiskBuckets = (riskProfile: ClassifyRisk) => {
+  let matrix6x6: { [key: number]: RiskBucket } = new Array(6);
 
   if (!riskProfile) return;
 

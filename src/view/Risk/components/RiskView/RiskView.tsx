@@ -203,7 +203,7 @@ function RiskView(): ReactElement {
       const calculatedRiskBuckets = configureRiskBuckets(adaptedMVP);
 
       const mappedMatrix = mapMatrix(
-        calculatedRiskBuckets,
+        calculatedRiskBuckets!,
         matrixConfig.matrix6x6.matMapColors
       );
       setMappedMatrix(mappedMatrix);

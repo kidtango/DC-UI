@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import { ClassifyRisk, RiskBucket } from '../models/risk';
 
-const configureRiskBuckets = (riskProfile: any) => {
-  let matrix6x6 = new Array(6);
+const configureRiskBuckets = (riskProfile: ClassifyRisk) => {
+  let matrix6x6: RiskBucket[] = new Array(6);
 
   if (!riskProfile) {
     return;

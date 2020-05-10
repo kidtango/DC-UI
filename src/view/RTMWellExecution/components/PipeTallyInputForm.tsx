@@ -74,6 +74,8 @@ interface State {
 }
 
 const PipeTallyInputForm: React.FC = () => {
+  const classes = useStyles();
+
   const [formState, setFormState] = useState<State>({
     values: { depth: null, pressure: null, event: '', safeguards: [] },
     isValid: false,
@@ -99,7 +101,7 @@ const PipeTallyInputForm: React.FC = () => {
         ...formState,
         values: {
           ...formState.values,
-          [event.target.name]: event.target.value as string[],
+          [event.target.name]: event.target.value,
         },
         touched: {
           ...formState.touched,
@@ -123,8 +125,6 @@ const PipeTallyInputForm: React.FC = () => {
 
   const hasError = (field: 'depth' | 'pressure' | 'event' | 'safeguards') =>
     formState.touched[field] && formState.errors[field] ? true : false;
-
-  const classes = useStyles();
 
   return (
     <>
