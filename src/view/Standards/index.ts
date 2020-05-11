@@ -1,1 +1,1 @@
-export { Standards as default } from './Standards';
+export { default as Standards } from './Standards';

@@ -11,7 +11,6 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
-import _ from 'lodash';
 import { safeguards } from 'view/Risk/safeguards/safeguards';
 
 // Configuration for safeguards menu
@@ -29,11 +28,11 @@ const MenuProps = {
 const formSchema = {
   depth: {
     presence: { allowEmpty: false, message: 'Depth in ft. is required' },
-    type: 'string',
+    type: 'number',
   },
   pressure: {
     presence: { allowEmpty: false, message: 'Pressure in paia is required' },
-    type: 'string',
+    type: 'number',
   },
   event: {
     presence: {
@@ -77,7 +76,7 @@ const PipeTallyInputForm: React.FC = () => {
   const classes = useStyles();
 
   const [formState, setFormState] = useState<State>({
-    values: { depth: null, pressure: null, event: '', safeguards: [] },
+    values: { depth: 0.0, pressure: 0.0, event: '', safeguards: [] },
     isValid: false,
     touched: { depth: false, pressure: false, event: false, safeguards: false },
     errors: { depth: [''], pressure: [''], event: [''], safeguards: [''] },
@@ -93,7 +92,9 @@ const PipeTallyInputForm: React.FC = () => {
     }));
   }, [formState.values]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | any>) => {
+  const handleChange = (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) => {
     event.persist();
 
     if (event.target.name === 'safeguards') {
@@ -101,11 +102,26 @@ const PipeTallyInputForm: React.FC = () => {
         ...formState,
         values: {
           ...formState.values,
-          [event.target.name]: event.target.value,
+          [event.target.name as any]: event.target.value,
         },
         touched: {
           ...formState.touched,
-          [event.target.name]: true,
+          [event.target.name as any]: true,
+        },
+      }));
+    } else if (
+      event.target.name === 'depth' ||
+      event.target.name === 'pressure'
+    ) {
+      setFormState((formState) => ({
+        ...formState,
+        values: {
+          ...formState.values,
+          [event.target.name as any]: parseFloat(event.target.value as string),
+        },
+        touched: {
+          ...formState.touched,
+          [event.target.name as any]: true,
         },
       }));
     } else {
@@ -113,11 +129,11 @@ const PipeTallyInputForm: React.FC = () => {
         ...formState,
         values: {
           ...formState.values,
-          [event.target.name]: event.target.value,
+          [event.target.name as any]: event.target.value,
         },
         touched: {
           ...formState.touched,
-          [event.target.name]: true,
+          [event.target.name as any]: true,
         },
       }));
     }
@@ -143,7 +159,7 @@ const PipeTallyInputForm: React.FC = () => {
             error={hasError('depth')}
             id='outlined-adornment-depth'
             name='depth'
-            type={'number'}
+            type='number'
             required={true}
             value={formState.values && formState.values.depth}
             onChange={handleChange}
@@ -165,7 +181,7 @@ const PipeTallyInputForm: React.FC = () => {
             error={hasError('pressure')}
             id='outlined-adornment-pressure'
             name='pressure'
-            type={'number'}
+            type='number'
             value={formState.values && formState.values.pressure}
             onChange={handleChange}
             labelWidth={135}

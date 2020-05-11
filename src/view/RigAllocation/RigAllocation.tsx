@@ -1,10 +1,11 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { RigAllocationDashboard } from './components';
 
+// Main Entry point for Rig Allocation app
 export const RigAllocation = () => {
   return (
     <div>
-      <Typography variant='h1'>Rig Allocation</Typography>
+      <RigAllocationDashboard />
     </div>
   );
 };

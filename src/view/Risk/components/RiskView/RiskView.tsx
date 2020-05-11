@@ -208,7 +208,7 @@ function RiskView(): ReactElement {
       );
       setMappedMatrix(mappedMatrix);
     }
-  }, [data]);
+  }, [data.classifyRisk]);
 
   const handleChange = (panel: string) => (
     event: React.ChangeEvent<{}>,
@@ -216,6 +216,7 @@ function RiskView(): ReactElement {
   ) => {
     setExpanded(newExpanded ? panel : false);
   };
+
   return (
     <Grid item container>
       <Grid item container spacing={1}>

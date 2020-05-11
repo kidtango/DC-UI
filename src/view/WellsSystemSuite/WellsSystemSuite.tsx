@@ -34,7 +34,6 @@ export const WellsSystemSuite: React.FC = () => {
       'Given a well plan, is is advisable to drill? To start, we have pre-selected three apps to help answer this question.',
     actionButtonTitle: 'evaluate',
     showForm: false,
-    inputForm: undefined,
   };
 
   return (
@@ -50,8 +49,7 @@ export const WellsSystemSuite: React.FC = () => {
           direction='column'
           justify='flex-start'
           alignItems='flex-start'
-          sm={9}
-        >
+          sm={9}>
           <Grid item container>
             <DecisionBox {...decisionBoxContents} />
 

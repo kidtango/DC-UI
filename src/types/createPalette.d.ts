@@ -1,5 +1,6 @@
 import * as createPalette from '@material-ui/core/styles/createPalette';
 
+// Extending the theme palete for custom color types
 declare module '@material-ui/core/styles/createPalette' {
   interface IconPaletteColorOptions {
     standards?: string;

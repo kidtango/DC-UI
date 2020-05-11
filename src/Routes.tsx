@@ -7,9 +7,8 @@ import Risk from 'view/Risk';
 import WellsSystemSuite from 'view/WellsSystemSuite';
 import RTMWellExecution from 'view/RTMWellExecution';
 import RTMContextProvider from 'view/RTMWellExecution/contexts';
-import Standards from 'view/Standards';
 import RigAllocation from 'view/RigAllocation';
-import { RiskContextsProvider } from 'view/Risk/contexts/RiskContexts';
+import { Standards } from 'view/Standards';
 
 export const Routes: React.FC = () => {
   return (

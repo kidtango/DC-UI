@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {
   FormControl,
@@ -6,11 +6,11 @@ import {
   OutlinedInput,
   FormControlLabel,
   Select,
-  MenuItem,
+  Button,
 } from '@material-ui/core';
 import Switch from '@material-ui/core/Switch';
 import clsx from 'clsx';
-import { stat } from 'fs';
+import validate from 'validate.js';
 
 const formSchema = {
   mudWeight: {
@@ -20,32 +20,73 @@ const formSchema = {
     },
     type: 'number',
   },
-  density: {
-    presence: {
-      allowEmpty: true,
-    },
-  },
 };
 
-interface Props {}
+interface State {
+  values: {
+    mudWeight: number | null;
+    density: number;
+  };
+  isValid: boolean;
+  touched: {
+    mudWeight: boolean;
+    density: boolean;
+  };
+  errors: {
+    mudWeight: string[];
+    density: string[];
+  };
+}
 
-const StandardsInputForm = (props: Props) => {
+const StandardsInputForm: React.FC = () => {
   const classes = useStyles();
 
-  const [age, setAge] = React.useState('');
-
-  // const hasError = (field: 'mudWeight' ) =>
-  // formState.touched[field] && formState.errors[field] ? true : false;
-
-  const [state, setState] = React.useState({
-    densitySwitch: false,
+  const [formState, setFormState] = useState<State>({
+    values: { mudWeight: 0.0, density: 0.5 },
+    isValid: false,
+    touched: { mudWeight: false, density: false },
+    errors: { mudWeight: [''], density: [''] },
   });
-  console.log('StandardsInputForm -> state', state);
+  console.log('StandardsInputForm:React.FC -> formState', formState);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('handleChange -> event', event.target.name);
-    setState({ ...state, [event.target.name]: event.target.checked });
+  useEffect(() => {
+    const errors = validate(formState.values, formSchema);
+
+    setFormState((formState) => ({
+      ...formState,
+      isValid: errors ? false : true,
+      errors: errors || {},
+    }));
+  }, [formState.values]);
+
+  const [densitySwitch, setDensitySwitch] = React.useState(false);
+
+  const handleChange = (
+    event: React.ChangeEvent<{ name?: string; value: string | unknown }>
+  ) => {
+    event.persist();
+
+    console.log(event.target.name, event.target.value);
+
+    setFormState((formState) => ({
+      ...formState,
+      values: {
+        ...formState.values,
+        [event.target.name as any]: parseFloat(event.target.value as string),
+      },
+      touched: {
+        ...formState.touched,
+        [event.target.name as any]: true,
+      },
+    }));
   };
+
+  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDensitySwitch(event.target.checked);
+  };
+
+  const hasError = (field: 'mudWeight' | 'density') =>
+    formState.touched[field] && formState.errors[field] ? true : false;
 
   return (
     <div className={classes.root}>
@@ -53,26 +94,26 @@ const StandardsInputForm = (props: Props) => {
         className={clsx(classes.margin, classes.mudWeight)}
         variant='outlined'>
         <InputLabel
-          htmlFor='outlined-adornment-depth'
+          htmlFor='outlined-adornment-mudWeight'
           margin='dense'
-          // error={hasError('depth')}
+          error={hasError('mudWeight')}
           required={true}>
           enter mud weight
         </InputLabel>
         <OutlinedInput
-          // error={hasError('depth')}
-          id='outlined-adornment-depth'
-          name='depth'
-          type={'number'}
+          error={hasError('density')}
+          id='outlined-adornment-mudWeight'
+          name='mudWeight'
+          type='number'
           required={true}
-          // value={formState.values && formState.values.depth}
-          // onChange={handleChange}
+          value={formState.values && formState.values.mudWeight}
+          onChange={handleChange}
           labelWidth={120}
           classes={{ root: classes.outlinedInput }}
         />
       </FormControl>
 
-      {state.densitySwitch && (
+      {densitySwitch && (
         <FormControl
           variant='outlined'
           className={clsx(classes.margin, classes.density)}>
@@ -82,19 +123,18 @@ const StandardsInputForm = (props: Props) => {
           <Select
             classes={{ root: classes.outlinedInput }}
             native
-            // value={state.age}
-            // onChange={handleChange}
+            value={formState.values.density}
+            onChange={handleChange}
             label='Density'
             inputProps={{
               name: 'density',
               id: 'density-input',
             }}>
-            <option aria-label='None' value='' />
-            <option value={10}>.00</option>
-            <option value={20}>.10</option>
-            <option value={30}>.22</option>
-            <option value={20}>.50</option>
-            <option value={30}>.75</option>
+            <option value={0.0}>.00</option>
+            <option value={0.1}>.10</option>
+            <option value={0.22}>.22</option>
+            <option value={0.5}>.50</option>
+            <option value={0.75}>.75</option>
           </Select>
         </FormControl>
       )}
@@ -103,13 +143,31 @@ const StandardsInputForm = (props: Props) => {
         <InputLabel>Hierarchy density default is +.5</InputLabel>
         <div className={classes.switch}>
           <FormControlLabel
-            value={state.densitySwitch}
+            value={densitySwitch}
             name='densitySwitch'
-            control={<Switch color='primary' onChange={handleChange} />}
+            control={<Switch color='primary' onChange={handleSwitchChange} />}
             label='Customize Density'
             labelPlacement='start'
           />
         </div>
+      </div>
+      <div className={classes.buttonGroup}>
+        <Button
+          variant='contained'
+          color='primary'
+          className={classes.submit}
+          classes={{ root: classes.buttonRoot }}
+          disabled={!formState.isValid}
+          type='submit'>
+          submit
+        </Button>
+        <Button
+          variant='contained'
+          color='secondary'
+          className={classes.clear}
+          classes={{ root: classes.buttonRoot }}>
+          clear
+        </Button>
       </div>
     </div>
   );
@@ -130,16 +188,16 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     mudWeight: {
-      width: '18%',
+      width: '12%',
     },
     density: {
-      width: '12%',
+      width: '8%',
     },
     switchInputGroup: {
       marginLeft: theme.spacing(2),
     },
     switch: {},
-    buttonGroup: { marginRight: theme.spacing(1) },
+    buttonGroup: { marginLeft: theme.spacing(4) },
 
     formControl: { width: '10%' },
     submit: { marginRight: theme.spacing(1) },
