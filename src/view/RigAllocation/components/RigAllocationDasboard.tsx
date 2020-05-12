@@ -15,7 +15,7 @@ import {
   WellEfficiencyPlanner,
   RigTimeCostOptimizer,
 } from './AppCards';
-import RigAllocationTable from './RigAllocationTable';
+import { RigAllocationTable } from './RigAllocationTable';
 
 const RigAllocationDashboard: React.FC = () => {
   const classes = useStyles();

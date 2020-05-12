@@ -29,6 +29,8 @@ import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import { Grid } from '@material-ui/core';
+import { getComparator, Order } from './getComparator';
+import { stableSort } from './stableSort';
 
 interface Data {
   depth: number;
@@ -63,40 +65,6 @@ const rows = [
   createData('rig12', 360, 19.0, 9, 37.0),
   createData('rig13', 437, 18.0, 63, 4.0),
 ];
-
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-type Order = 'asc' | 'desc';
-
-function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key
-): (
-  a: { [key in Key]: number | string },
-  b: { [key in Key]: number | string }
-) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
 
 interface HeadCell {
   disablePadding: boolean;
@@ -310,7 +278,7 @@ export default function RigAllocationTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const [checked, setChecked] = React.useState(false);
-  const [expanded, setExpanded] = React.useState<string | false>();
+  const [expanded, setExpanded] = React.useState<string | false>('panel');
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -365,7 +333,7 @@ export default function RigAllocationTable() {
     setDense(event.target.checked);
   };
 
-  const handleChange = (panel: string) => (
+  const handleExpansionPanelChange = (panel: string) => (
     event: React.ChangeEvent<{}>,
     newExpanded: boolean
   ) => {
@@ -382,15 +350,12 @@ export default function RigAllocationTable() {
       <ExpansionPanel
         square={false}
         expanded={expanded === 'panel'}
-        onChange={handleChange('panel')}>
+        onChange={handleExpansionPanelChange('panel')}
+        defaultExpanded={true}>
         <ExpansionPanelSummary>
           <Grid container alignItems='center' spacing={1}>
             <Grid item>
               <div className={classes.panelTitle}>RIG PROFILE:</div>
-            </Grid>
-
-            <Grid item>
-              <div></div>
             </Grid>
           </Grid>
         </ExpansionPanelSummary>
@@ -505,7 +470,3 @@ const ExpansionPanelSummary = withStyles({
   content: {},
   expanded: {},
 })(MuiExpansionPanelSummary);
-
-const ExpansionPanelDetails = withStyles((theme) => ({
-  root: { padding: 0 },
-}))(MuiExpansionPanelDetails);
