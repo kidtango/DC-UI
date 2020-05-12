@@ -24,7 +24,7 @@ export const WellsSystemSuite: React.FC = () => {
 
   const headerContents: HeaderProps = {
     title: 'Wells System Suite',
-    subTitle: 'System Lap Application',
+    subTitle: 'System Lab Applications',
     icon: <WellsSystemSuiteIcon fontSize='inherit' />,
     iconColor: theme.palette.icon.wells,
   };

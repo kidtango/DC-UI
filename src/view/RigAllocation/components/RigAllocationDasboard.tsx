@@ -16,10 +16,14 @@ import {
   RigTimeCostOptimizer,
 } from './AppCards';
 import { RigAllocationTable } from './RigAllocationTable';
+import { RigAllocationInputForm } from './InputForm';
+import { useRigAllocationContext } from '../contexts/RigAllocationContext';
 
 const RigAllocationDashboard: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const { decisionBoxContent, rigSelectionView } = useRigAllocationContext();
 
   const headerContents: HeaderProps = {
     title: 'Rig Allocation Application Suite',
@@ -29,8 +33,9 @@ const RigAllocationDashboard: React.FC = () => {
   };
 
   const decisionBoxContents: DecisionBoxProps = {
-    content: 'Select an application below to assist in you rig selection',
-    showForm: true,
+    content: decisionBoxContent,
+    showForm: rigSelectionView?.isActive,
+    inputForm: <RigAllocationInputForm />,
   };
 
   return (
@@ -58,7 +63,7 @@ const RigAllocationDashboard: React.FC = () => {
                     <RigSelectionView
                       isError={false}
                       isDisabled={false}
-                      isActive={false}
+                      isActive={rigSelectionView?.isActive!}
                     />
                     <ProgressArrowIcon
                       fontSize='small'

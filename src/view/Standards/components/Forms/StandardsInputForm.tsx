@@ -42,12 +42,13 @@ const StandardsInputForm: React.FC = () => {
   const classes = useStyles();
 
   const [formState, setFormState] = useState<State>({
-    values: { mudWeight: 0.0, density: 0.5 },
+    values: { mudWeight: null, density: 0.5 },
     isValid: false,
     touched: { mudWeight: false, density: false },
     errors: { mudWeight: [''], density: [''] },
   });
-  console.log('StandardsInputForm:React.FC -> formState', formState);
+
+  const [densitySwitch, setDensitySwitch] = React.useState(false);
 
   useEffect(() => {
     const errors = validate(formState.values, formSchema);
@@ -59,14 +60,10 @@ const StandardsInputForm: React.FC = () => {
     }));
   }, [formState.values]);
 
-  const [densitySwitch, setDensitySwitch] = React.useState(false);
-
   const handleChange = (
     event: React.ChangeEvent<{ name?: string; value: string | unknown }>
   ) => {
     event.persist();
-
-    console.log(event.target.name, event.target.value);
 
     setFormState((formState) => ({
       ...formState,
