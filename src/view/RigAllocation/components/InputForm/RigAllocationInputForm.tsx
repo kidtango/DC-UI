@@ -244,7 +244,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     inputFields: {
-      width: '12%',
+      width: '14%',
     },
     density: {
       width: '8%',

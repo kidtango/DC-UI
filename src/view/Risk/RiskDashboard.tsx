@@ -17,6 +17,7 @@ import {
 import { RiskView } from './components/RiskView';
 import { RiskInputForm } from './components/DecisionPanel';
 import { useRiskContexts } from './contexts/RiskContexts';
+import { DrillingRig } from 'icons/DrillingRig';
 
 export const RiskDashboard: React.FC = () => {
   const classes = useStyles();
@@ -103,8 +104,14 @@ export const RiskDashboard: React.FC = () => {
         </Grid>
 
         {/* Decision Detail Panel */}
-        <Grid item container sm={3} className={classes.decisionPanel}>
-          {/* <DecisionDetailPanel /> */}
+        <Grid
+          item
+          container
+          sm={3}
+          alignItems='stretch'
+          alignContent='stretch'
+          justify='flex-end'>
+          <DrillingRig className={classes.drillingRig} fontSize='inherit' />
         </Grid>
       </Grid>
     </div>
@@ -121,9 +128,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     left: '100px',
   },
   drillingRig: {
-    minWidth: 450,
-    minHeight: 610,
-    marginRight: 'auto',
+    width: '100%',
+    height: '100%',
   },
-  decisionPanel: {},
 }));

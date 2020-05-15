@@ -16,6 +16,10 @@ import {
 } from './AppCards';
 import DrillPipeInventoryCheck from './AppCards/DrillPipeInventoryCheck';
 import useStandardsContext from '../contexts';
+import {
+  SlurryWeightTable,
+  SlurrySpacerTableView,
+} from './Tables/SlurryAndSpacerTables';
 
 const StandardsDashboard: React.FC = () => {
   const classes = useStyles();
@@ -108,7 +112,9 @@ const StandardsDashboard: React.FC = () => {
         {/* <Grid item container sm={3} className={classes.drillingRigContainer}>
           <DrillingRig className={classes.drillingRig} fontSize='inherit' />
         </Grid> */}
-        <Grid item container sm={9}></Grid>
+        <Grid item container sm={9}>
+          <SlurrySpacerTableView />
+        </Grid>
       </Grid>
     </div>
   );

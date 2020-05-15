@@ -49,7 +49,7 @@ export const WellsSystemSuite: React.FC = () => {
           direction='column'
           justify='flex-start'
           alignItems='flex-start'
-          sm={9}>
+          sm={10}>
           <Grid item container>
             <DecisionBox {...decisionBoxContents} />
 
@@ -129,11 +129,48 @@ export const WellsSystemSuite: React.FC = () => {
                   </Grid>
                 </Grid>
               </Grid>
+
+              <Grid container className={classes.appContainer}>
+                <Grid item container>
+                  <Grid item container sm={12} className={classes.cardRow}>
+                    <Grid item container alignItems='center'>
+                      <SlurryAndSpacerWeight
+                        isDisabled={true}
+                        isError={false}
+                        isActive={false}
+                      />
+                      <ProgressArrowIcon fontSize='small' />
+
+                      <RiskProfileBuilder
+                        isDisabled={true}
+                        isError={false}
+                        isActive={false}
+                      />
+                      <ProgressArrowIcon fontSize='small' />
+                      <SlurryAndSpacerWeight
+                        isDisabled={true}
+                        isError={false}
+                        isActive={false}
+                      />
+                      <ProgressArrowIcon fontSize='small' />
+                      <SlurryAndSpacerWeight
+                        isDisabled={true}
+                        isError={false}
+                        isActive={false}
+                      />
+                      {/* <AppConnectorIcon
+                        fontSize='small'
+                        className={classes.appConnectIcon}
+                      /> */}
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item container sm={3} className={classes.drillingRigContainer}>
+        <Grid item container sm={2} className={classes.drillingRigContainer}>
           <DrillingRig className={classes.drillingRig} fontSize='inherit' />
         </Grid>
       </Grid>
@@ -158,8 +195,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   drillingRigContainer: {},
   drillingRig: {
-    minWidth: 310,
-    minHeight: 610,
-    marginRight: 'auto',
+    width: '100%',
+    height: '100%',
   },
 }));

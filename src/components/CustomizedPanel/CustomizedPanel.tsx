@@ -9,10 +9,11 @@ export interface CustomizedPanelProps {
   children: React.ReactNode;
   title: string;
   panelName: string;
+  disclaimer?: string;
 }
 
 const CustomizedPanel = (props: CustomizedPanelProps) => {
-  const { title, children, panelName } = props;
+  const { title, children, panelName, disclaimer } = props;
 
   const classes = useStyles();
 
@@ -35,6 +36,7 @@ const CustomizedPanel = (props: CustomizedPanelProps) => {
           aria-controls='panel1d-content'
           id='panel1d-header'>
           <div className={classes.panelTitle}>{title}</div>
+          <div className={classes.disclaimer}>{disclaimer}</div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>{children}</ExpansionPanelDetails>
       </ExpansionPanel>
@@ -48,9 +50,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: { marginBottom: theme.spacing(2) },
   panelTitle: {
     fontSize: 16,
+    letterSpacing: -0.5,
+    lineHeight: '20px',
+    fontWeight: 600,
+    marginRight: 'auto',
+  },
+  disclaimer: {
+    fontSize: 16,
     letterSpacing: -1,
     lineHeight: '20px',
     fontWeight: 600,
+    marginRignt: 'auto',
+    color: theme.palette.error.main,
   },
 }));
 
@@ -74,10 +85,12 @@ const ExpansionPanel = withStyles((theme) => ({
 
 const ExpansionPanelSummary = withStyles({
   root: {
+    display: 'flex',
     backgroundColor: 'rgba(0, 0, 0, .03)',
     borderBottom: '1px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     minHeight: 56,
+
     '&$expanded': {
       minHeight: 56,
     },

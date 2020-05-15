@@ -185,7 +185,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     mudWeight: {
-      width: '12%',
+      width: '14%',
     },
     density: {
       width: '8%',

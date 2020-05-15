@@ -6,7 +6,7 @@ export const DrillingRig: React.FC<SvgIconProps> = (props: SvgIconProps) => {
   const classes = useStyles();
 
   return (
-    <SvgIcon {...props} viewBox='0 0 450 899.501'>
+    <SvgIcon {...props} viewBox='0 0 460 1200'>
       <path
         d='M234.62 379.429c-.307 2.228-2.045 1.788-3.462 1.789q-33.4.025-66.8 0c-1.4 0-3.175.475-3.41-1.813 22.214.012 44.428.063 66.642-.027 2.342-.012 4.685.903 7.03.051z'
         fill='#073c5f'

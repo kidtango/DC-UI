@@ -1,1 +1,1 @@
-export { RTMWellExecution as default } from './RTMWellExecution';
+export { default as RTMWellExecution } from './RTMWellExecution';

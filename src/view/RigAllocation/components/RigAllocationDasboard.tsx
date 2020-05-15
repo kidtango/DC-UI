@@ -18,6 +18,7 @@ import {
 import { RigAllocationTable } from './RigAllocationTable';
 import { RigAllocationInputForm } from './InputForm';
 import { useRigAllocationContext } from '../contexts/RigAllocationContext';
+import { EffeciencyFrontierView } from './EffeciencyFrontier';
 
 const RigAllocationDashboard: React.FC = () => {
   const classes = useStyles();
@@ -111,10 +112,14 @@ const RigAllocationDashboard: React.FC = () => {
         {/* Decision Detail Panel */}
         <Grid item container sm={3} className={classes.decisionPanel}>
           {/* <DecisionDetailPanel /> */}
+          Drilling Rig Pic
         </Grid>
       </Grid>
       <Grid item container sm={9}>
         <RigAllocationTable />
+      </Grid>
+      <Grid item container sm={9} className={classes.effeciencyFrontier}>
+        <EffeciencyFrontierView />
       </Grid>
     </div>
   );
@@ -137,4 +142,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: 'auto',
   },
   decisionPanel: {},
+  effeciencyFrontier: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
 }));

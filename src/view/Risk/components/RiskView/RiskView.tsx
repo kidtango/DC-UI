@@ -219,9 +219,16 @@ function RiskView(): ReactElement {
 
   return (
     <Grid item container>
+      <div className={classes.note}>
+        Note: The Consequence algorithm has a Confidence level of 1% (low) for
+        all events.
+      </div>
       <Grid item container spacing={1}>
         <Grid item sm={6} alignItems='center' alignContent='center'>
-          <CustomizedPanel title={'RISK MATRIX'} panelName={'riskMatrix'}>
+          <CustomizedPanel
+            title={'RISK MATRIX'}
+            panelName={'riskMatrix'}
+            disclaimer={'Confidence level 1%'}>
             <div className={classes.riskMatrix}>
               <RiskMatrix mappedMatrix={mappedMatrix} />
             </div>
@@ -230,7 +237,8 @@ function RiskView(): ReactElement {
         <Grid item sm={6}>
           <CustomizedPanel
             title={'RISK STREAM'}
-            panelName={'consequenceProfile'}>
+            panelName={'consequenceProfile'}
+            disclaimer={'Confidence level 1%'}>
             <div>
               <RiskStreamList selectedRiskBucket={selectedRiskBucket} />
             </div>
@@ -252,4 +260,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 600,
   },
   riskMatrix: {},
+  note: {
+    color: theme.palette.error.main,
+    marginBottom: theme.spacing(1),
+    fontSize: 12,
+  },
 }));

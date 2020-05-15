@@ -5,10 +5,9 @@ import { RouteWithLayout } from './components/RouteWithLayout/RouteWithLayout';
 import { Main } from 'layout';
 import Risk from 'view/Risk';
 import WellsSystemSuite from 'view/WellsSystemSuite';
-import RTMWellExecution from 'view/RTMWellExecution';
-import RTMContextProvider from 'view/RTMWellExecution/contexts';
 import RigAllocation from 'view/RigAllocation';
 import { Standards } from 'view/Standards';
+import { RTMWellExecution } from 'view/RTMWellExecution';
 
 export const Routes: React.FC = () => {
   return (
@@ -36,14 +35,12 @@ export const Routes: React.FC = () => {
 
       <RouteWithLayout component={Risk} exact layout={Main} path='/RiskView' />
 
-      <RTMContextProvider>
-        <RouteWithLayout
-          component={RTMWellExecution}
-          exact
-          layout={Main}
-          path='/RTMWellExecution'
-        />
-      </RTMContextProvider>
+      <RouteWithLayout
+        component={RTMWellExecution}
+        exact
+        layout={Main}
+        path='/RTMWellExecution'
+      />
     </Switch>
   );
 };
