@@ -16,6 +16,12 @@ import {
 } from 'view/Standards/components';
 import { RigSelectionView } from 'view/RigAllocation/components';
 import { RiskProfileBuilder } from 'view/Risk/components';
+import {
+  DrillPipeConnectorsBHA,
+  PipeTallyGenerator,
+  FishingEquipmentTool,
+  WellPlanningOptimizer,
+} from 'view/RTMWellExecution/components/AppCards';
 
 export const WellsSystemSuite: React.FC = () => {
   const classes = useStyles();
@@ -92,31 +98,31 @@ export const WellsSystemSuite: React.FC = () => {
                 </Grid>
               </Grid>
 
-              {/* App Container #1*/}
+              {/* App Container #2*/}
               <Grid container className={classes.appContainer}>
                 <Grid item container>
                   <Grid item container sm={12} className={classes.cardRow}>
                     <Grid item container alignItems='center'>
-                      <SlurryAndSpacerWeight
-                        isDisabled={true}
+                      <PipeTallyGenerator
+                        isDisabled={false}
                         isError={false}
                         isActive={false}
                       />
                       <ProgressArrowIcon fontSize='small' />
 
-                      <RiskProfileBuilder
+                      <DrillPipeConnectorsBHA
+                        isDisabled={false}
+                        isError={false}
+                        isActive={false}
+                      />
+                      <ProgressArrowIcon fontSize='small' />
+                      <FishingEquipmentTool
                         isDisabled={true}
                         isError={false}
                         isActive={false}
                       />
                       <ProgressArrowIcon fontSize='small' />
-                      <SlurryAndSpacerWeight
-                        isDisabled={true}
-                        isError={false}
-                        isActive={false}
-                      />
-                      <ProgressArrowIcon fontSize='small' />
-                      <SlurryAndSpacerWeight
+                      <WellPlanningOptimizer
                         isDisabled={true}
                         isError={false}
                         isActive={false}
@@ -130,6 +136,7 @@ export const WellsSystemSuite: React.FC = () => {
                 </Grid>
               </Grid>
 
+              {/* App Container #3*/}
               <Grid container className={classes.appContainer}>
                 <Grid item container>
                   <Grid item container sm={12} className={classes.cardRow}>

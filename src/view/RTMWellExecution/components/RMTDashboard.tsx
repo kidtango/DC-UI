@@ -15,11 +15,11 @@ import { ProgressArrowIcon } from 'icons/ProgressArrowIcon';
 import { RiskView } from 'view/Risk/components/RiskView';
 import { useRTMContext } from '../contexts/RTMContext';
 import PipeTallyInputForm from './PipeTallyInputForm';
-import PipeTallyGenerator from './PipeTallyGenerator';
-import { DrillPipeConnectorsBHA } from '.';
-import CasingPointLocatorTool from './CasingPointLocatorTool';
-import WellPlaningOptimizer from './WellPlaningOptimizer';
+import PipeTallyGenerator from './AppCards/PipeTallyGenerator';
+import CasingPointLocatorTool from './AppCards/CasingPointLocatorTool';
+import WellPlaningOptimizer from './AppCards/WellPlanningOptimizer';
 import PipeTallyTables from './PipeTallyTables';
+import { DrillPipeConnectorsBHA } from './AppCards';
 
 // Mock Data Start
 

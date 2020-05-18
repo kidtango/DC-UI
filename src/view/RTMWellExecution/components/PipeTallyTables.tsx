@@ -1,18 +1,16 @@
-import React from "react";
-import { withStyles, makeStyles, Theme, Grid } from "@material-ui/core";
-import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
-import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import MuiExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import Checkbox from "@material-ui/core/Checkbox";
+import React from 'react';
+import { withStyles, makeStyles, Theme, Grid } from '@material-ui/core';
+import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
+import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export interface PipeTallyTablesProps {
   pipeTally: {
@@ -50,15 +48,15 @@ export default function PipeTallyTables(props: PipeTallyTablesProps) {
     <Paper className={classes.root}>
       <ExpansionPanel
         square={false}
-        expanded={expanded === "panel"}
-        onChange={handleChange("panel")}>
+        expanded={expanded === 'panel'}
+        onChange={handleChange('panel')}>
         <ExpansionPanelSummary>
           <Grid container alignItems='center' spacing={1}>
             <Grid item>
               <Checkbox
                 checked={checked}
                 onChange={handleCheckedBox}
-                inputProps={{ "aria-label": "primary checkbox" }}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
               />
             </Grid>
 
@@ -105,38 +103,38 @@ export default function PipeTallyTables(props: PipeTallyTablesProps) {
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-  root: { marginBottom: theme.spacing(1), minWidth: "100%" },
+  root: { marginBottom: theme.spacing(1), minWidth: '100%' },
 
   panelTitle: {
     fontSize: 16,
-    letterSpacing: "-.5px",
-    lineHeight: "20px",
+    letterSpacing: '-.5px',
+    lineHeight: '20px',
     fontWeight: 600,
   },
   pipeProfileNumber: {
     background: (props: PipeTallyTablesProps) => {
       return props.profileColor;
     },
-    padding: "0px 4px 0px 4px",
-    borderRadius: "5px",
+    padding: '0px 4px 0px 4px',
+    borderRadius: '5px',
     fontWeight: 600,
   },
-  table: { minWidth: "100%" },
+  table: { minWidth: '100%' },
 }));
 
 const ExpansionPanel = withStyles({
   root: {
-    border: "1px solid rgba(0, 0, 0, .125)",
+    border: '1px solid rgba(0, 0, 0, .125)',
     borderTop: `4px solid #009DD9`,
-    boxShadow: "none",
-    "&:not(:last-child)": {
+    boxShadow: 'none',
+    '&:not(:last-child)': {
       borderBottom: 0,
     },
-    "&:before": {
-      display: "none",
+    '&:before': {
+      display: 'none',
     },
-    "&$expanded": {
-      margin: "auto",
+    '&$expanded': {
+      margin: 'auto',
     },
   },
   expanded: {},
@@ -144,11 +142,11 @@ const ExpansionPanel = withStyles({
 
 const ExpansionPanelSummary = withStyles({
   root: {
-    backgroundColor: "rgba(0, 0, 0, .08)",
-    borderBottom: "2px solid rgba(0, 0, 0, .125)",
+    backgroundColor: 'rgba(0, 0, 0, .08)',
+    borderBottom: '2px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     maxHeight: 20,
-    "&$expanded": {
+    '&$expanded': {
       maxHeight: 20,
     },
   },

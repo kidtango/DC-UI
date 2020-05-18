@@ -1,16 +1,16 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core';
 import { AppCardProps, AppCard } from 'components/AppCard/AppCard';
-import GridOnIcon from '@material-ui/icons/GridOn';
+import { NodeConnectIcon } from 'icons/NodeConnectIcon';
 
-export interface RigSelectionProps {
+export interface FishingEquipmentToolProps {
   isError: boolean;
   isDisabled: boolean;
   isActive: boolean;
 }
 
-const DrillPipeConnectors: React.FC<RigSelectionProps> = (
-  props: RigSelectionProps
+const FishingEquipmentTool: React.FC<FishingEquipmentToolProps> = (
+  props: FishingEquipmentToolProps
 ) => {
   const { isError, isDisabled, isActive } = props;
 
@@ -18,16 +18,16 @@ const DrillPipeConnectors: React.FC<RigSelectionProps> = (
 
   const appCardContents: AppCardProps = {
     domainTitle: 'RTM',
-    appTitle: 'Drill pipe connectors & BHA',
+    appTitle: 'Fishing Equipment Tool',
     iconColor: theme.palette.icon.RTM,
     cardState: {
       isDisabled,
       isError,
       isActive,
     },
-    appIcon: <GridOnIcon />,
+    appIcon: <NodeConnectIcon />,
   };
   return <AppCard {...appCardContents} />;
 };
 
-export default DrillPipeConnectors;
+export default FishingEquipmentTool;

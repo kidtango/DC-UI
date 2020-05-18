@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '@material-ui/core';
 import { AppCardProps, AppCard } from 'components/AppCard/AppCard';
 import { RTMIcon } from 'icons/RTMIcon';
-import { useRTMContext } from '../contexts/RTMContext';
+import { useRTMContext } from 'view/RTMWellExecution/contexts/RTMContext';
 
 export interface RigSelectionProps {
   isError: boolean;

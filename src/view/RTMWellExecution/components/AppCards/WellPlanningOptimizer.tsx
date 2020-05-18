@@ -3,14 +3,14 @@ import { useTheme } from '@material-ui/core';
 import { AppCardProps, AppCard } from 'components/AppCard/AppCard';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-export interface RigSelectionProps {
+export interface WellPlanningOptimizer {
   isError: boolean;
   isDisabled: boolean;
   isActive: boolean;
 }
 
-const WellPlaningOptimizer: React.FC<RigSelectionProps> = (
-  props: RigSelectionProps
+const WellPlanningOptimizer: React.FC<WellPlanningOptimizer> = (
+  props: WellPlanningOptimizer
 ) => {
   const { isError, isDisabled, isActive } = props;
 
@@ -30,4 +30,4 @@ const WellPlaningOptimizer: React.FC<RigSelectionProps> = (
   return <AppCard {...appCardContents} />;
 };
 
-export default WellPlaningOptimizer;
+export default WellPlanningOptimizer;
